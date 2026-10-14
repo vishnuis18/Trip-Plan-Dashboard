@@ -1,0 +1,67 @@
+import React, { useState } from 'react';
+import { AuthProvider } from './context/AuthContext';
+import { TripProvider, useTrip } from './context/TripContext';
+import { Sidebar } from './components/Sidebar';
+import { Navbar } from './components/Navbar';
+
+// Pages
+import { Dashboard } from './pages/Dashboard';
+import { Trips } from './pages/Trips';
+import { Explore } from './pages/Explore';
+import { Budget } from './pages/Budget';
+import { ItineraryPage } from './pages/ItineraryPage';
+import { SavedPlaces } from './pages/SavedPlaces';
+import { Settings } from './pages/Settings';
+
+// Modals
+import { AddTripModal } from './components/modals/AddTripModal';
+import { AddActivityModal } from './components/modals/AddActivityModal';
+import { AddExpenseModal } from './components/modals/AddExpenseModal';
+import { QuickSearchModal } from './components/modals/QuickSearchModal';
+import { AuthModal } from './components/modals/AuthModal';
+import { DocumentsModal } from './components/modals/DocumentsModal';
+
+const MainLayout = () => {
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const { activeModal } = useTrip();
+
+  return (
+    <div className="min-h-screen bg-[#0B0E17] text-slate-100 flex overflow-x-hidden font-sans">
+      {/* Fixed Left Sidebar matching reference image */}
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-w-0 bg-[#0B0E17]">
+        <Navbar onSearchChange={(q) => console.log('Search:', q)} />
+
+        <main className="flex-1 pb-16">
+          {activeTab === 'dashboard' && <Dashboard setActiveTab={setActiveTab} />}
+          {activeTab === 'trips' && <Trips setActiveTab={setActiveTab} />}
+          {activeTab === 'explore' && <Explore />}
+          {activeTab === 'budget' && <Budget />}
+          {activeTab === 'itinerary' && <ItineraryPage />}
+          {activeTab === 'saved' && <SavedPlaces setActiveTab={setActiveTab} />}
+          {activeTab === 'settings' && <Settings />}
+        </main>
+      </div>
+
+      {/* Global Modals */}
+      {activeModal === 'addTrip' && <AddTripModal />}
+      {activeModal === 'addActivity' && <AddActivityModal />}
+      {activeModal === 'addExpense' && <AddExpenseModal />}
+      {activeModal === 'search' && <QuickSearchModal setActiveTab={setActiveTab} />}
+      {activeModal === 'auth' && <AuthModal />}
+      {activeModal === 'documents' && <DocumentsModal />}
+    </div>
+  );
+};
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <TripProvider>
+        <MainLayout />
+      </TripProvider>
+    </AuthProvider>
+  );
+}

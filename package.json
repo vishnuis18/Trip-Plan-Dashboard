@@ -1,0 +1,22 @@
+{
+  "name": "tripplan-workspace",
+  "version": "1.0.0",
+  "description": "TripPlan Dashboard - Fullstack Travel Planning Platform",
+  "scripts": {
+    "dev:backend": "cd backend && npm run start",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "travel",
+    "dashboard",
+    "itinerary",
+    "budget",
+    "react",
+    "tailwind",
+    "express",
+    "mongodb"
+  ],
+  "author": "Shihab / TripPlan Team",
+  "license": "MIT"
+}
