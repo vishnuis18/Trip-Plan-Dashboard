@@ -22,7 +22,16 @@ export const Explore = () => {
           category: selectedCategory === 'All' ? '' : selectedCategory
         });
         if (res?.catalog) {
-          setCatalog(res.catalog);
+          const formattedCatalog = res.catalog.map((place) => {
+            if (place.id === 'exp_tokyo_teamlab' || place.name?.toLowerCase().includes('teamlab')) {
+              return { ...place, image: '/images/teamlab.jpg' };
+            }
+            if (place.id === 'exp_kyoto_arashiyama' || place.name?.toLowerCase().includes('arashiyama')) {
+              return { ...place, image: '/images/arashiyama.jpg' };
+            }
+            return place;
+          });
+          setCatalog(formattedCatalog);
         }
         if (res?.categories) {
           setCategories(res.categories);
@@ -110,8 +119,18 @@ export const Explore = () => {
               {/* Photo & Badge */}
               <div className="h-48 relative overflow-hidden">
                 <img
-                  src={place.image}
+                  src={
+                    place.id === 'exp_tokyo_teamlab' || place.name?.toLowerCase().includes('teamlab')
+                      ? '/images/teamlab.jpg'
+                      : place.id === 'exp_kyoto_arashiyama' || place.name?.toLowerCase().includes('arashiyama')
+                      ? '/images/arashiyama.jpg'
+                      : place.image
+                  }
                   alt={place.name}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/images/shibuya.jpg';
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121927] via-transparent to-black/30" />

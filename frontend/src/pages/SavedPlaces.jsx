@@ -49,8 +49,18 @@ export const SavedPlaces = ({ setActiveTab }) => {
               {/* Photo & Actions */}
               <div className="h-48 relative overflow-hidden">
                 <img
-                  src={place.image || '/images/shibuya.jpg'}
+                  src={
+                    place.placeName?.toLowerCase().includes('teamlab') || place.name?.toLowerCase().includes('teamlab')
+                      ? '/images/teamlab.jpg'
+                      : place.placeName?.toLowerCase().includes('arashiyama') || place.name?.toLowerCase().includes('arashiyama')
+                      ? '/images/arashiyama.jpg'
+                      : place.image || '/images/shibuya.jpg'
+                  }
                   alt={place.placeName}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/images/shibuya.jpg';
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121927] via-transparent to-black/30" />
