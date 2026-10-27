@@ -24,6 +24,274 @@
   }
 }
 
+/* =========================================================================
+   LIGHT THEME: Clean, Neat, Beautiful Apple/Linear Travel Design System
+   ========================================================================= */
+
+.light-theme {
+  --bg-main: #F4F6FB;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --border-card: #E2E8F0;
+  --border-highlight: #3B82F6;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  background-color: #F4F6FB !important;
+  color: #0F172A !important;
+}
+
+/* Page, Body & Container Backgrounds */
+.light-theme,
+.light-theme body,
+.light-theme main,
+.light-theme div[class*="min-h-screen"],
+.light-theme div[class*="bg-[#0B0E17]"] {
+  background-color: #F4F6FB !important;
+  color: #0F172A !important;
+}
+
+/* Desktop Sidebar */
+.light-theme aside {
+  background-color: #FFFFFF !important;
+  border-right-color: #E2E8F0 !important;
+  box-shadow: 2px 0 12px rgba(15, 23, 42, 0.02) !important;
+}
+
+.light-theme aside [class*="bg-[#141B2D]"] {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+.light-theme aside nav button {
+  color: #64748B !important;
+}
+
+.light-theme aside nav button:hover {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+.light-theme aside nav button[class*="bg-[#18233C]"] {
+  background-color: #EFF6FF !important;
+  color: #2563EB !important;
+  border-color: #BFDBFE !important;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.1) !important;
+}
+
+.light-theme aside nav button[class*="bg-[#18233C]"] svg {
+  color: #2563EB !important;
+}
+
+/* Top Navbar */
+.light-theme header {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-bottom-color: #E2E8F0 !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.light-theme header [class*="bg-[#131A2B]"] {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+.light-theme header input {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+.light-theme header input::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Trip Workspace Tab Bar */
+.light-theme .trip-workspace-nav,
+.light-theme div[class*="bg-[#121927]/80"] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom-color: #E2E8F0 !important;
+}
+
+.light-theme .trip-workspace-nav button {
+  color: #64748B !important;
+}
+
+.light-theme .trip-workspace-nav button:hover {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+.light-theme .trip-workspace-nav button[class*="bg-blue-500"] {
+  background-color: #EFF6FF !important;
+  color: #2563EB !important;
+  border-color: #BFDBFE !important;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08) !important;
+}
+
+.light-theme .trip-workspace-nav button[class*="bg-blue-500"] svg {
+  color: #2563EB !important;
+}
+
+/* ALL Cards: Crisp Pure White, Soft Elevation, Clean Slate Borders */
+.light-theme [class*="bg-[#121927]"],
+.light-theme [class*="bg-[#141B2D]"],
+.light-theme [class*="bg-[#18233C]"],
+.light-theme [class*="bg-[#131A2B]"],
+.light-theme [class*="bg-[#1C253C]"],
+.light-theme .glass-card {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px 0 rgba(15, 23, 42, 0.03) !important;
+  color: #0F172A !important;
+}
+
+/* Card hover states */
+.light-theme [class*="hover:bg-[#18233C]"]:hover,
+.light-theme [class*="hover:bg-[#141B2D]"]:hover {
+  background-color: #F8FAFC !important;
+}
+
+/* Sub-containers & Inner Boxes (Day boxes, rate boxes, detail panels) */
+.light-theme [class*="bg-black/"],
+.light-theme [class*="bg-white/5"],
+.light-theme [class*="bg-white/10"],
+.light-theme [class*="bg-white/[0.02]"],
+.light-theme [class*="bg-white/[0.04]"],
+.light-theme [class*="bg-white/[0.05]"],
+.light-theme [class*="bg-white/[0.06]"],
+.light-theme [class*="bg-white/[0.07]"],
+.light-theme [class*="bg-white/[0.08]"] {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Universal Borders */
+.light-theme [class*="border-white/"] {
+  border-color: #E2E8F0 !important;
+}
+
+/* Form Inputs, Selects & Textareas */
+.light-theme input:not([type="checkbox"]):not([type="radio"]),
+.light-theme select,
+.light-theme textarea {
+  background-color: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+.light-theme input::placeholder,
+.light-theme textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Typography Hierarchy */
+.light-theme h1,
+.light-theme h2,
+.light-theme h3,
+.light-theme h4,
+.light-theme h5,
+.light-theme [class*="text-white"],
+.light-theme [class*="text-slate-100"] {
+  color: #0F172A !important;
+}
+
+.light-theme [class*="text-slate-200"],
+.light-theme [class*="text-slate-300"] {
+  color: #334155 !important;
+}
+
+.light-theme [class*="text-slate-400"] {
+  color: #64748B !important;
+}
+
+.light-theme [class*="text-slate-500"] {
+  color: #94A3B8 !important;
+}
+
+/* =========================================================================
+   PROTECTED PHOTOGRAPHIC OVERLAYS: Keep Bright White for Maximum Contrast
+   ========================================================================= */
+
+/* 1. Trip Hero Banner (Mount Fuji / Landscape) */
+.light-theme .trip-hero-banner,
+.light-theme .trip-hero-banner h1,
+.light-theme .trip-hero-banner h2,
+.light-theme .trip-hero-banner h3,
+.light-theme .trip-hero-banner h4,
+.light-theme .trip-hero-banner p,
+.light-theme .trip-hero-banner span:not([class*="text-transparent"]),
+.light-theme .trip-hero-banner div {
+  color: #FFFFFF !important;
+}
+
+.light-theme .trip-hero-banner span[class*="text-transparent"] {
+  background: linear-gradient(135deg, #93C5FD 0%, #C4B5FD 50%, #E9D5FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.light-theme .trip-hero-banner [class*="bg-[#141B2D]"] {
+  background-color: rgba(15, 23, 42, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #FFFFFF !important;
+}
+
+.light-theme .trip-hero-banner [class*="text-slate-300"],
+.light-theme .trip-hero-banner [class*="text-slate-400"] {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 2. Sidebar Promo Card */
+.light-theme .sidebar-promo,
+.light-theme .sidebar-promo * {
+  color: #FFFFFF !important;
+}
+
+.light-theme .sidebar-promo button {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #FFFFFF !important;
+}
+
+/* 3. Primary Gradient Action Buttons */
+.light-theme [class*="bg-gradient-to-r"],
+.light-theme [class*="bg-blue-500"],
+.light-theme button[class*="bg-blue-500"] *,
+.light-theme [class*="bg-gradient-to-r"] * {
+  color: #FFFFFF !important;
+}
+
+/* 4. Live FX Converter Green Estimation Box */
+.light-theme div[class*="from-emerald-500/10"] {
+  background: linear-gradient(to right, #ECFDF5, #F0FDFA) !important;
+  border-color: #A7F3D0 !important;
+}
+
+.light-theme div[class*="from-emerald-500/10"] span {
+  color: #065F46 !important;
+}
+
+.light-theme div[class*="from-emerald-500/10"] span[class*="text-xl"] {
+  color: #047857 !important;
+}
+
+/* 5. Mobile Bottom Nav in Light Theme */
+.light-theme nav[class*="safe-area-pb"] {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-top-color: #E2E8F0 !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-theme nav[class*="safe-area-pb"] button {
+  color: #64748B !important;
+}
+
+.light-theme nav[class*="safe-area-pb"] button:hover {
+  color: #0F172A !important;
+}
+
 /* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
@@ -41,6 +309,18 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
+}
+
+.light-theme ::-webkit-scrollbar-track {
+  background: #F1F5F9 !important;
+}
+
+.light-theme ::-webkit-scrollbar-thumb {
+  background: #CBD5E1 !important;
+}
+
+.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8 !important;
 }
 
 /* Custom card glassmorphism */

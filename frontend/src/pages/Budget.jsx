@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Wallet, 
   Plus, 
@@ -10,12 +10,15 @@ import {
   Utensils, 
   Ticket, 
   Car, 
-  MoreHorizontal 
+  MoreHorizontal,
+  Coins
 } from 'lucide-react';
 import { useTrip } from '../context/TripContext';
+import { SettleUpModal } from '../components/SettleUpModal';
 
 export const Budget = () => {
   const { expenses, budgetSummary, activeTrip, deleteExpense, openModal } = useTrip();
+  const [isSettleUpOpen, setIsSettleUpOpen] = useState(false);
 
   const totalBudget = activeTrip?.totalBudget || 0;
   const totalSpent = expenses.reduce((sum, item) => sum + (Number(item.amount) || 0), 0);
@@ -51,14 +54,29 @@ export const Budget = () => {
           </p>
         </div>
 
-        <button
-          onClick={() => openModal('addExpense')}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xs font-bold shadow-lg shadow-emerald-500/20 transition-all"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add Expense</span>
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsSettleUpOpen(true)}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 text-xs font-semibold border border-emerald-500/30 transition-all shadow-sm"
+          >
+            <Coins className="w-4 h-4" />
+            <span>Settle Up</span>
+          </button>
+
+          <button
+            onClick={() => openModal('addExpense')}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xs font-bold shadow-lg shadow-emerald-500/20 transition-all"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Add Expense</span>
+          </button>
+        </div>
       </div>
+
+      <SettleUpModal 
+        isOpen={isSettleUpOpen} 
+        onClose={() => setIsSettleUpOpen(false)} 
+      />
 
       {/* Top 3 Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

@@ -3,6 +3,7 @@ import { AuthProvider } from './context/AuthContext';
 import { TripProvider, useTrip } from './context/TripContext';
 import { Sidebar } from './components/Sidebar';
 import { Navbar } from './components/Navbar';
+import { MobileBottomNav } from './components/MobileBottomNav';
 
 // Pages
 import { Dashboard } from './pages/Dashboard';
@@ -12,6 +13,8 @@ import { Budget } from './pages/Budget';
 import { ItineraryPage } from './pages/ItineraryPage';
 import { SavedPlaces } from './pages/SavedPlaces';
 import { Settings } from './pages/Settings';
+import { PlanWithAIPage } from './pages/PlanWithAIPage';
+import { SharedTripView } from './pages/SharedTripView';
 
 // Modals
 import { AddTripModal } from './components/modals/AddTripModal';
@@ -22,8 +25,24 @@ import { AuthModal } from './components/modals/AuthModal';
 import { DocumentsModal } from './components/modals/DocumentsModal';
 
 const MainLayout = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const isShareUrl = window.location.pathname.startsWith('/share');
+  const shareId = isShareUrl ? window.location.pathname.split('/share/')[1] : null;
+
+  const [activeTab, setActiveTab] = useState(isShareUrl ? 'share' : 'dashboard');
   const { activeModal } = useTrip();
+
+  // If viewing shared link, render dedicated clean public view
+  if (activeTab === 'share') {
+    return (
+      <SharedTripView
+        slugOrId={shareId}
+        onBackToApp={() => {
+          window.history.pushState({}, '', '/');
+          setActiveTab('dashboard');
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0B0E17] text-slate-100 flex overflow-x-hidden font-sans">
@@ -34,8 +53,9 @@ const MainLayout = () => {
       <div className="flex-1 flex flex-col min-w-0 bg-[#0B0E17]">
         <Navbar onSearchChange={(q) => console.log('Search:', q)} />
 
-        <main className="flex-1 pb-16">
+        <main className="flex-1 pb-20 md:pb-16">
           {activeTab === 'dashboard' && <Dashboard setActiveTab={setActiveTab} />}
+          {activeTab === 'ai' && <PlanWithAIPage setActiveTab={setActiveTab} />}
           {activeTab === 'trips' && <Trips setActiveTab={setActiveTab} />}
           {activeTab === 'explore' && <Explore />}
           {activeTab === 'budget' && <Budget />}
@@ -44,6 +64,9 @@ const MainLayout = () => {
           {activeTab === 'settings' && <Settings />}
         </main>
       </div>
+
+      {/* Mobile Bottom Navigation Bar (<768px) */}
+      <MobileBottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Global Modals */}
       {activeModal === 'addTrip' && <AddTripModal />}

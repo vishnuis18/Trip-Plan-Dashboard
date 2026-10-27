@@ -19,7 +19,8 @@ export const TripSummary = ({ onViewDetailsClick }) => {
 
   const dates = activeTrip?.datesFormatted || '—';
   const travelers = activeTrip?.travelersText || (activeTrip?.travelers ? `${activeTrip.travelers} People` : '—');
-  const budget = activeTrip?.totalBudget ? `$${activeTrip.totalBudget.toLocaleString()}` : '$0';
+  const currencySymbol = activeTrip?.currency === 'EUR' ? '€' : activeTrip?.currency === 'GBP' ? '£' : activeTrip?.currency === 'JPY' ? '¥' : activeTrip?.currency === 'INR' ? '₹' : '$';
+  const budget = activeTrip?.totalBudget ? `${currencySymbol}${activeTrip.totalBudget.toLocaleString()}` : `${currencySymbol}0`;
   const airport = activeTrip?.airport || '—';
 
   return (

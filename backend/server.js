@@ -9,6 +9,7 @@ const tripRoutes = require('./routes/tripRoutes');
 const savedPlaceRoutes = require('./routes/savedPlaceRoutes');
 const exploreRoutes = require('./routes/exploreRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const aiRoutes = require('./routes/aiRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -24,6 +25,7 @@ app.use('/api/trips', tripRoutes);
 app.use('/api/saved-places', savedPlaceRoutes);
 app.use('/api/explore', exploreRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/ai', aiRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({

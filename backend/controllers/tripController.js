@@ -96,6 +96,29 @@ exports.getTripById = async (req, res) => {
   }
 };
 
+exports.getSharedTrip = async (req, res) => {
+  try {
+    const { slugOrId } = req.params;
+    let trip = await storage.getTripById(slugOrId);
+    if (!trip) {
+      trip = await storage.getActiveTrip();
+    }
+    if (!trip) {
+      return res.status(404).json({ message: 'Shared trip not found' });
+    }
+    const activities = await storage.getActivitiesByTrip(trip._id);
+    res.json({
+      trip,
+      activities,
+      isReadOnly: true,
+      sharedAt: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Get shared trip error:', error);
+    res.status(500).json({ message: 'Error retrieving shared trip' });
+  }
+};
+
 exports.createTrip = async (req, res) => {
   try {
     const userId = req.user?.id || '660000000000000000000001';
@@ -117,19 +140,50 @@ exports.createTrip = async (req, res) => {
       return res.status(400).json({ message: 'Destination, start date, and end date are required' });
     }
 
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = Math.abs(end - start);
+    const calculatedNights = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+    const daysCount = calculatedNights + 1;
+
+    // Format dates string (e.g. "Apr 2 – 6, 2025")
+    const startFormatted = start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const endFormatted = end.toLocaleDateString('en-US', { day: 'numeric', year: 'numeric' });
+    const datesFormatted = `${startFormatted} – ${endFormatted}`;
+
+    // Auto-select smart cover image if not provided
+    let smartCover = coverImage;
+    if (!smartCover) {
+      const destLower = destination.toLowerCase();
+      if (destLower.includes('kyoto')) smartCover = '/images/arashiyama.jpg';
+      else if (destLower.includes('shibuya')) smartCover = '/images/shibuya.jpg';
+      else if (destLower.includes('paris')) smartCover = 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&auto=format&fit=crop&q=80';
+      else smartCover = '/images/mount_fuji.jpg';
+    }
+
+    // Generate dynamic dayTabs
+    const dynamicDayTabs = Array.from({ length: daysCount }, (_, i) => ({
+      day: i + 1,
+      label: `Day ${i + 1}`,
+      sublabel: i === 0 ? 'Arrival' : i === daysCount - 1 ? 'Departure' : `Explore`
+    }));
+
     const newTrip = await storage.createTrip({
       userId,
       title: title || `${destination} Trip`,
       destination,
       startDate,
       endDate,
+      datesFormatted,
       travelers: Number(travelers) || 2,
       travelersText: `${Number(travelers) || 2} People`,
-      nights: Number(nights) || 5,
+      nights: Number(nights) || calculatedNights,
       totalBudget: Number(totalBudget) || 3000,
+      currency: req.body.currency || 'USD',
       airport: airport || 'Nearest International Airport',
       airportCode: airportCode || 'AIR',
-      coverImage: coverImage || '/images/mount_fuji.jpg',
+      coverImage: smartCover,
+      dayTabs: req.body.dayTabs && req.body.dayTabs.length > 0 ? req.body.dayTabs : dynamicDayTabs,
       isActive: isActive !== undefined ? isActive : true
     });
 

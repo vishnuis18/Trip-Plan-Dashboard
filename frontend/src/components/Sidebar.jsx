@@ -10,7 +10,8 @@ import {
   Plane,
   ArrowRight,
   ChevronRight,
-  MapPin
+  MapPin,
+  Sparkles
 } from 'lucide-react';
 import { useTrip } from '../context/TripContext';
 import { useAuth } from '../context/AuthContext';
@@ -21,6 +22,7 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
 
   const navItems = [
     { id: 'dashboard', label: 'Home', icon: Home },
+    { id: 'ai', label: 'Plan with AI', icon: Sparkles, isAi: true },
     { id: 'trips', label: 'Trips', icon: Plane, badge: trips?.length || 0 },
     { id: 'explore', label: 'Explore', icon: Compass },
     { id: 'budget', label: 'Budget', icon: Wallet },
@@ -29,7 +31,7 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    <aside className="w-64 shrink-0 flex flex-col justify-between h-screen sticky top-0 bg-[#0B0E17]/95 border-r border-white/[0.07] p-5 select-none z-30">
+    <aside className="w-64 shrink-0 hidden md:flex flex-col justify-between h-screen sticky top-0 bg-[#0B0E17]/95 border-r border-white/[0.07] p-5 select-none z-30">
       <div className="flex flex-col gap-6">
         {/* Brand Logo */}
         <div className="flex items-center gap-3 px-1">
@@ -75,6 +77,11 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
                   <Icon className={`w-4 h-4 ${isActive ? 'text-blue-400' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
                 </div>
+                {item.isAi && (
+                  <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-indigo-300 border border-purple-500/30">
+                    AI
+                  </span>
+                )}
                 {item.badge !== undefined && (
                   <span className={`text-[11px] px-2 py-0.5 rounded-full font-semibold ${
                     isActive 
@@ -107,13 +114,13 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
 
       <div className="flex flex-col gap-4">
         {/* Next Trip Ready Promo Card */}
-        <div className="relative rounded-2xl overflow-hidden p-4 border border-white/[0.08] shadow-lg group">
+        <div className="relative rounded-2xl overflow-hidden p-4 border border-white/[0.08] shadow-lg group sidebar-promo">
           <img
             src="/images/mount_fuji.jpg"
             alt="Fuji scenery"
             className="absolute inset-0 w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-700 opacity-35 brightness-75"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0E17] via-[#0B0E17]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
           
           <div className="relative z-10">
             <h4 className="text-sm font-semibold text-white mb-1">Next trip ready?</h4>

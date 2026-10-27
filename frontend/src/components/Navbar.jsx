@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, Bell, ChevronDown, Plus, LogOut, User, Check } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, Bell, ChevronDown, Plus, LogOut, User, Check, Sun, Moon } from 'lucide-react';
 import { useTrip } from '../context/TripContext';
 import { useAuth } from '../context/AuthContext';
 
@@ -8,6 +8,31 @@ export const Navbar = ({ onSearchChange }) => {
   const { user, logout } = useAuth();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('tripplan_theme') || 'dark';
+  });
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    localStorage.setItem('tripplan_theme', nextTheme);
+    if (nextTheme === 'light') {
+      document.documentElement.classList.add('light-theme');
+      document.body.classList.add('light-theme');
+    } else {
+      document.documentElement.classList.remove('light-theme');
+      document.body.classList.remove('light-theme');
+    }
+  };
+
+  useEffect(() => {
+    const saved = localStorage.getItem('tripplan_theme');
+    if (saved === 'light') {
+      document.documentElement.classList.add('light-theme');
+      document.body.classList.add('light-theme');
+    }
+  }, []);
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
@@ -27,7 +52,16 @@ export const Navbar = ({ onSearchChange }) => {
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5">
+        {/* Light / Dark Mode Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="w-10 h-10 rounded-xl bg-[#131A2B] hover:bg-[#1A2338] border border-white/[0.08] flex items-center justify-center text-slate-300 hover:text-white transition-all"
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        >
+          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-indigo-400" />}
+        </button>
+
         {/* Create Trip Quick CTA */}
         <button
           onClick={() => openModal('addTrip')}

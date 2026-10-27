@@ -45,6 +45,7 @@ export const api = {
   getTrips: () => request('/trips'),
   getActiveTrip: () => request('/trips/active'),
   getTripById: (id) => request(`/trips/${id}`),
+  getSharedTrip: (slugOrId) => request(`/trips/share/${slugOrId}`),
   createTrip: (tripData) => request('/trips', { method: 'POST', body: JSON.stringify(tripData) }),
   updateTrip: (id, tripData) => request(`/trips/${id}`, { method: 'PUT', body: JSON.stringify(tripData) }),
   setActiveTrip: (id) => request(`/trips/${id}/activate`, { method: 'PUT' }),
@@ -76,4 +77,9 @@ export const api = {
   // Notifications
   getNotifications: () => request('/notifications'),
   markNotificationRead: (id) => request(`/notifications/${id}/read`, { method: 'PUT' }),
+
+  // AI Co-Planner
+  generateItineraryAI: (params) => request('/ai/generate-itinerary', { method: 'POST', body: JSON.stringify(params) }),
+  swapActivityAI: (params) => request('/ai/swap-activity', { method: 'POST', body: JSON.stringify(params) }),
+  getAIChecklist: (params) => request('/ai/checklist', { method: 'POST', body: JSON.stringify(params) }),
 };

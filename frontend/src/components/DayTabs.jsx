@@ -18,14 +18,14 @@ export const DayTabs = () => {
 
   return (
     <div className="w-full overflow-x-auto pb-1 scrollbar-none">
-      <div className="grid grid-cols-5 gap-2.5 min-w-[500px]">
+      <div className="flex items-center gap-2.5 min-w-full">
         {days.map((item) => {
           const isSelected = Number(selectedDay) === Number(item.day);
           return (
             <button
               key={item.day}
               onClick={() => setSelectedDay(item.day)}
-              className={`flex flex-col items-center justify-center py-2.5 px-3 rounded-2xl text-center transition-all ${
+              className={`flex-1 min-w-[110px] flex flex-col items-center justify-center py-2.5 px-3 rounded-2xl text-center transition-all ${
                 isSelected
                   ? 'bg-[#18233C] text-white border border-blue-500/50 shadow-lg shadow-blue-500/10'
                   : 'bg-[#121927]/80 hover:bg-[#162033] text-slate-400 hover:text-slate-200 border border-white/[0.05]'

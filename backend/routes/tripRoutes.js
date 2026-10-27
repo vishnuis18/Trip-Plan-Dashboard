@@ -7,6 +7,7 @@ const expenseController = require('../controllers/expenseController');
 // All trips
 router.get('/', tripController.getTrips);
 router.get('/active', tripController.getActiveTrip);
+router.get('/share/:slugOrId', tripController.getSharedTrip);
 router.get('/:id', tripController.getTripById);
 router.post('/', tripController.createTrip);
 router.put('/:id', tripController.updateTrip);
