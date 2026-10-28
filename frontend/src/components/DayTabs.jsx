@@ -17,7 +17,7 @@ export const DayTabs = () => {
   }
 
   return (
-    <div className="w-full overflow-x-auto pb-1 scrollbar-none">
+    <div className="w-full overflow-x-auto pb-1 scrollbar-none day-tabs-container">
       <div className="flex items-center gap-2.5 min-w-full">
         {days.map((item) => {
           const isSelected = Number(selectedDay) === Number(item.day);
@@ -25,16 +25,16 @@ export const DayTabs = () => {
             <button
               key={item.day}
               onClick={() => setSelectedDay(item.day)}
-              className={`flex-1 min-w-[110px] flex flex-col items-center justify-center py-2.5 px-3 rounded-2xl text-center transition-all ${
+              className={`flex-1 min-w-[110px] flex flex-col items-center justify-center py-2.5 px-3 rounded-2xl text-center transition-all cursor-pointer select-none outline-none focus:outline-none ${
                 isSelected
-                  ? 'bg-[#18233C] text-white border border-blue-500/50 shadow-lg shadow-blue-500/10'
-                  : 'bg-[#121927]/80 hover:bg-[#162033] text-slate-400 hover:text-slate-200 border border-white/[0.05]'
+                  ? 'day-tab-active bg-blue-600 text-white border border-blue-500 shadow-md shadow-blue-500/20'
+                  : 'day-tab-inactive bg-[#121927]/80 hover:bg-[#162033] text-slate-400 hover:text-slate-200 border border-white/[0.05]'
               }`}
             >
               <span className={`text-xs font-bold leading-tight ${isSelected ? 'text-white' : 'text-slate-300'}`}>
                 {item.label}
               </span>
-              <span className={`text-[11px] font-medium mt-0.5 leading-tight ${isSelected ? 'text-blue-300' : 'text-slate-400'}`}>
+              <span className={`text-[11px] font-medium mt-0.5 leading-tight ${isSelected ? 'text-blue-100' : 'text-slate-400'}`}>
                 {item.sublabel}
               </span>
             </button>

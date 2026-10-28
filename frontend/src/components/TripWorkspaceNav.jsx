@@ -23,8 +23,8 @@ export const TripWorkspaceNav = ({ activeWorkspaceTab, setActiveWorkspaceTab, ac
   ];
 
   return (
-    <div className="w-full bg-[#121927]/80 backdrop-blur-md border-b border-white/[0.08] px-6 py-2 sticky top-16 z-10 overflow-x-auto scrollbar-none trip-workspace-nav">
-      <div className="flex items-center gap-1.5 min-w-max">
+    <div className="w-full bg-[#121927]/90 backdrop-blur-md border-b border-white/[0.08] px-6 py-2.5 sticky top-16 z-10 overflow-x-auto scrollbar-none trip-workspace-nav">
+      <div className="flex items-center gap-2 min-w-max">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeWorkspaceTab === tab.id;
@@ -32,13 +32,13 @@ export const TripWorkspaceNav = ({ activeWorkspaceTab, setActiveWorkspaceTab, ac
             <button
               key={tab.id}
               onClick={() => setActiveWorkspaceTab(tab.id)}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+              className={`workspace-tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs transition-all cursor-pointer select-none outline-none focus:outline-none ${
                 isActive
-                  ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]'
+                  ? 'workspace-tab-active bg-blue-600 text-white font-bold shadow-md shadow-blue-500/25 border border-blue-500'
+                  : 'workspace-tab-inactive text-slate-400 hover:text-white hover:bg-white/[0.06] border border-transparent font-medium'
               }`}
             >
-              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-400' : 'text-slate-400'}`} />
+              <Icon className="w-3.5 h-3.5 shrink-0" />
               <span>{tab.label}</span>
             </button>
           );

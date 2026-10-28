@@ -29,16 +29,20 @@
    ========================================================================= */
 
 .light-theme {
-  --bg-main: #F4F6FB;
+  --bg-main: #FAFAF8;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F8FAFC;
-  --border-card: #E2E8F0;
-  --border-highlight: #3B82F6;
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-  background-color: #F4F6FB !important;
-  color: #0F172A !important;
+  --bg-card-hover: #FFFBF9;
+  --border-card: #EAECEF;
+  --border-highlight: #FF5B45;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --accent-coral: #FF5B45;
+  --accent-coral-hover: #FA472F;
+  --accent-sky: #0284C7;
+  --accent-amber: #F59E0B;
+  background-color: #FAFAF8 !important;
+  color: #111827 !important;
 }
 
 /* Page, Body & Container Backgrounds */
@@ -47,20 +51,26 @@
 .light-theme main,
 .light-theme div[class*="min-h-screen"],
 .light-theme div[class*="bg-[#0B0E17]"] {
-  background-color: #F4F6FB !important;
-  color: #0F172A !important;
+  background-color: #FAFAF8 !important;
+  color: #111827 !important;
 }
 
 /* Desktop Sidebar */
 .light-theme aside {
   background-color: #FFFFFF !important;
-  border-right-color: #E2E8F0 !important;
-  box-shadow: 2px 0 12px rgba(15, 23, 42, 0.02) !important;
+  border-right-color: #EAECEF !important;
+  box-shadow: 2px 0 16px rgba(17, 24, 39, 0.02) !important;
 }
 
 .light-theme aside [class*="bg-[#141B2D]"] {
-  background-color: #F8FAFC !important;
-  border-color: #E2E8F0 !important;
+  background-color: #F8F9FA !important;
+  border-color: #EAECEF !important;
+}
+
+/* Sidebar Brand Logo: Sunset Amber to Coral Gradient (TripNest style) */
+.light-theme aside div[class*="bg-gradient-to-br"] {
+  background: linear-gradient(135deg, #FF644E 0%, #F59E0B 100%) !important;
+  box-shadow: 0 4px 14px rgba(255, 91, 69, 0.28) !important;
 }
 
 .light-theme aside nav button {
@@ -68,72 +78,164 @@
 }
 
 .light-theme aside nav button:hover {
-  background-color: #F1F5F9 !important;
-  color: #0F172A !important;
+  background-color: #FFF6F4 !important;
+  color: #111827 !important;
 }
 
+/* Active Sidebar Nav Item (Warm Soft Coral Wash & Pill) */
 .light-theme aside nav button[class*="bg-[#18233C]"] {
-  background-color: #EFF6FF !important;
-  color: #2563EB !important;
-  border-color: #BFDBFE !important;
-  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.1) !important;
+  background-color: #FFF2F0 !important;
+  color: #FF5B45 !important;
+  border-color: #FFD4CC !important;
+  box-shadow: 0 1px 4px rgba(255, 91, 69, 0.12) !important;
+  font-weight: 700 !important;
 }
 
 .light-theme aside nav button[class*="bg-[#18233C]"] svg {
-  color: #2563EB !important;
+  color: #FF5B45 !important;
+}
+
+.light-theme aside nav button[class*="bg-[#18233C]"] span {
+  color: #FF5B45 !important;
 }
 
 /* Top Navbar */
 .light-theme header {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  border-bottom-color: #E2E8F0 !important;
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-bottom-color: #EAECEF !important;
   backdrop-filter: blur(16px) !important;
 }
 
 .light-theme header [class*="bg-[#131A2B]"] {
-  background-color: #F1F5F9 !important;
-  border-color: #E2E8F0 !important;
-  color: #0F172A !important;
+  background-color: #F8F9FA !important;
+  border-color: #EAECEF !important;
+  color: #111827 !important;
 }
 
 .light-theme header input {
-  background-color: #F1F5F9 !important;
-  border-color: #E2E8F0 !important;
-  color: #0F172A !important;
+  background-color: #F8F9FA !important;
+  border-color: #EAECEF !important;
+  color: #111827 !important;
 }
 
 .light-theme header input::placeholder {
-  color: #94A3B8 !important;
+  color: #9CA3AF !important;
 }
 
 /* Trip Workspace Tab Bar */
+.trip-workspace-nav button {
+  outline: none !important;
+}
+
+.trip-workspace-nav button:focus,
+.trip-workspace-nav button:focus-visible {
+  outline: none !important;
+}
+
 .light-theme .trip-workspace-nav,
-.light-theme div[class*="bg-[#121927]/80"] {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  border-bottom-color: #E2E8F0 !important;
+.light-theme div[class*="trip-workspace-nav"] {
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #EAECEF !important;
+  box-shadow: 0 1px 4px rgba(17, 24, 39, 0.03) !important;
 }
 
-.light-theme .trip-workspace-nav button {
-  color: #64748B !important;
+.light-theme .trip-workspace-nav .workspace-tab-inactive,
+.light-theme .trip-workspace-nav button:not(.workspace-tab-active) {
+  background-color: transparent !important;
+  color: #4B5563 !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-.light-theme .trip-workspace-nav button:hover {
-  background-color: #F1F5F9 !important;
-  color: #0F172A !important;
+.light-theme .trip-workspace-nav .workspace-tab-inactive:hover,
+.light-theme .trip-workspace-nav button:not(.workspace-tab-active):hover {
+  background-color: #FFF5F3 !important;
+  color: #111827 !important;
+  border-color: #FFE4DE !important;
 }
 
-.light-theme .trip-workspace-nav button[class*="bg-blue-500"] {
-  background-color: #EFF6FF !important;
-  color: #2563EB !important;
-  border-color: #BFDBFE !important;
-  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08) !important;
+.light-theme .trip-workspace-nav .workspace-tab-inactive svg,
+.light-theme .trip-workspace-nav button:not(.workspace-tab-active) svg {
+  color: #6B7280 !important;
 }
 
-.light-theme .trip-workspace-nav button[class*="bg-blue-500"] svg {
-  color: #2563EB !important;
+.light-theme .trip-workspace-nav .workspace-tab-inactive:hover svg,
+.light-theme .trip-workspace-nav button:not(.workspace-tab-active):hover svg {
+  color: #FF5B45 !important;
 }
 
-/* ALL Cards: Crisp Pure White, Soft Elevation, Clean Slate Borders */
+/* Active tab in Light Theme: Vibrant Warm Coral Sunset Pill (TripNest theme) */
+.light-theme .trip-workspace-nav .workspace-tab-active,
+.light-theme .trip-workspace-nav button.workspace-tab-active {
+  background: linear-gradient(135deg, #FF644E 0%, #FF4538 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FF4538 !important;
+  box-shadow: 0 3px 12px rgba(255, 91, 69, 0.32) !important;
+  outline: none !important;
+}
+
+.light-theme .trip-workspace-nav .workspace-tab-active:focus,
+.light-theme .trip-workspace-nav .workspace-tab-active:focus-visible {
+  outline: none !important;
+  border: 1px solid #FF4538 !important;
+}
+
+.light-theme .trip-workspace-nav .workspace-tab-active *,
+.light-theme .trip-workspace-nav .workspace-tab-active span,
+.light-theme .trip-workspace-nav .workspace-tab-active svg {
+  color: #FFFFFF !important;
+  fill: none !important;
+}
+
+/* Day Tabs in Light Theme */
+.day-tabs-container button {
+  outline: none !important;
+}
+
+.day-tabs-container button:focus,
+.day-tabs-container button:focus-visible {
+  outline: none !important;
+}
+
+.light-theme .day-tabs-container .day-tab-inactive {
+  background-color: #FFFFFF !important;
+  border-color: #EAECEF !important;
+  box-shadow: 0 1px 3px rgba(17, 24, 39, 0.03) !important;
+  outline: none !important;
+}
+
+.light-theme .day-tabs-container .day-tab-inactive:hover {
+  background-color: #FFF9F7 !important;
+  border-color: #FFD4CC !important;
+}
+
+.light-theme .day-tabs-container .day-tab-inactive span:first-child {
+  color: #111827 !important;
+}
+
+.light-theme .day-tabs-container .day-tab-inactive span:last-child {
+  color: #6B7280 !important;
+}
+
+.light-theme .day-tabs-container .day-tab-active {
+  background: linear-gradient(135deg, #FF644E 0%, #FF4538 100%) !important;
+  border-color: #FF4538 !important;
+  box-shadow: 0 3px 10px rgba(255, 91, 69, 0.28) !important;
+  outline: none !important;
+}
+
+.light-theme .day-tabs-container .day-tab-active:focus,
+.light-theme .day-tabs-container .day-tab-active:focus-visible {
+  outline: none !important;
+  border-color: #FF4538 !important;
+}
+
+.light-theme .day-tabs-container .day-tab-active span {
+  color: #FFFFFF !important;
+}
+
+/* ALL Cards: Crisp Pure White, Soft Elevation, Clean Airy Borders */
 .light-theme [class*="bg-[#121927]"],
 .light-theme [class*="bg-[#141B2D]"],
 .light-theme [class*="bg-[#18233C]"],
@@ -141,15 +243,15 @@
 .light-theme [class*="bg-[#1C253C]"],
 .light-theme .glass-card {
   background-color: #FFFFFF !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px 0 rgba(15, 23, 42, 0.03) !important;
-  color: #0F172A !important;
+  border-color: #EAECEF !important;
+  box-shadow: 0 4px 20px -2px rgba(17, 24, 39, 0.04), 0 1px 3px 0 rgba(17, 24, 39, 0.02) !important;
+  color: #111827 !important;
 }
 
 /* Card hover states */
 .light-theme [class*="hover:bg-[#18233C]"]:hover,
 .light-theme [class*="hover:bg-[#141B2D]"]:hover {
-  background-color: #F8FAFC !important;
+  background-color: #FFFDFB !important;
 }
 
 /* Sub-containers & Inner Boxes (Day boxes, rate boxes, detail panels) */
@@ -162,27 +264,34 @@
 .light-theme [class*="bg-white/[0.06]"],
 .light-theme [class*="bg-white/[0.07]"],
 .light-theme [class*="bg-white/[0.08]"] {
-  background-color: #F8FAFC !important;
-  border-color: #E2E8F0 !important;
+  background-color: #F8F9FA !important;
+  border-color: #EAECEF !important;
 }
 
 /* Universal Borders */
 .light-theme [class*="border-white/"] {
-  border-color: #E2E8F0 !important;
+  border-color: #EAECEF !important;
 }
 
 /* Form Inputs, Selects & Textareas */
 .light-theme input:not([type="checkbox"]):not([type="radio"]),
 .light-theme select,
 .light-theme textarea {
-  background-color: #F8FAFC !important;
-  border-color: #CBD5E1 !important;
-  color: #0F172A !important;
+  background-color: #F8F9FA !important;
+  border-color: #D1D5DB !important;
+  color: #111827 !important;
+}
+
+.light-theme input:focus,
+.light-theme select:focus,
+.light-theme textarea:focus {
+  border-color: #FF5B45 !important;
+  box-shadow: 0 0 0 3px rgba(255, 91, 69, 0.15) !important;
 }
 
 .light-theme input::placeholder,
 .light-theme textarea::placeholder {
-  color: #94A3B8 !important;
+  color: #9CA3AF !important;
 }
 
 /* Typography Hierarchy */
@@ -193,20 +302,26 @@
 .light-theme h5,
 .light-theme [class*="text-white"],
 .light-theme [class*="text-slate-100"] {
-  color: #0F172A !important;
+  color: #111827 !important;
 }
 
 .light-theme [class*="text-slate-200"],
 .light-theme [class*="text-slate-300"] {
-  color: #334155 !important;
+  color: #374151 !important;
 }
 
 .light-theme [class*="text-slate-400"] {
-  color: #64748B !important;
+  color: #6B7280 !important;
 }
 
 .light-theme [class*="text-slate-500"] {
-  color: #94A3B8 !important;
+  color: #9CA3AF !important;
+}
+
+/* Brand Highlights & Links */
+.light-theme [class*="text-blue-400"],
+.light-theme [class*="text-blue-500"] {
+  color: #FF5B45 !important;
 }
 
 /* =========================================================================
@@ -226,13 +341,13 @@
 }
 
 .light-theme .trip-hero-banner span[class*="text-transparent"] {
-  background: linear-gradient(135deg, #93C5FD 0%, #C4B5FD 50%, #E9D5FF 100%) !important;
+  background: linear-gradient(135deg, #FF8A65 0%, #FFB74D 50%, #FFD54F 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 .light-theme .trip-hero-banner [class*="bg-[#141B2D]"] {
-  background-color: rgba(15, 23, 42, 0.75) !important;
+  background-color: rgba(17, 24, 39, 0.75) !important;
   border-color: rgba(255, 255, 255, 0.25) !important;
   backdrop-filter: blur(12px) !important;
   color: #FFFFFF !important;
@@ -250,15 +365,26 @@
 }
 
 .light-theme .sidebar-promo button {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: linear-gradient(135deg, #FF644E 0%, #FF4538 100%) !important;
+  border-color: #FF5B45 !important;
   color: #FFFFFF !important;
 }
 
-/* 3. Primary Gradient Action Buttons */
+/* 3. Primary Warm Coral Action Buttons (TripNest CTA style) */
 .light-theme [class*="bg-gradient-to-r"],
-.light-theme [class*="bg-blue-500"],
+.light-theme button[class*="bg-blue-600"],
+.light-theme button[class*="bg-blue-500"] {
+  background: linear-gradient(135deg, #FF644E 0%, #FF4538 100%) !important;
+  box-shadow: 0 4px 14px rgba(255, 91, 69, 0.3) !important;
+  border-color: #FF5B45 !important;
+}
+
+.light-theme button[class*="bg-blue-600"] *,
 .light-theme button[class*="bg-blue-500"] *,
+.light-theme .workspace-tab-active,
+.light-theme .workspace-tab-active *,
+.light-theme .day-tab-active,
+.light-theme .day-tab-active *,
 .light-theme [class*="bg-gradient-to-r"] * {
   color: #FFFFFF !important;
 }
@@ -279,17 +405,97 @@
 
 /* 5. Mobile Bottom Nav in Light Theme */
 .light-theme nav[class*="safe-area-pb"] {
-  background-color: rgba(255, 255, 255, 0.94) !important;
-  border-top-color: #E2E8F0 !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-top-color: #EAECEF !important;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05) !important;
 }
 
 .light-theme nav[class*="safe-area-pb"] button {
-  color: #64748B !important;
+  color: #6B7280 !important;
 }
 
 .light-theme nav[class*="safe-area-pb"] button:hover {
-  color: #0F172A !important;
+  color: #FF5B45 !important;
+}
+
+.light-theme nav[class*="safe-area-pb"] [class*="text-blue-400"] {
+  color: #FF5B45 !important;
+}
+
+.light-theme nav[class*="safe-area-pb"] span[class*="bg-blue-400"] {
+  background-color: #FF5B45 !important;
+}
+
+/* 6. AI Co-Planner Hero Banner in Light Mode */
+.ai-hero-banner {
+  background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 45%, #7C2D12 85%, #9A3412 100%) !important;
+  border: 1px solid rgba(255, 91, 69, 0.3) !important;
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.18) !important;
+}
+
+.light-theme .ai-hero-banner,
+.light-theme .ai-hero-banner h1,
+.light-theme .ai-hero-banner h1 span:not([class*="text-transparent"]),
+.light-theme .ai-hero-banner div {
+  color: #FFFFFF !important;
+}
+
+.light-theme .ai-hero-banner p {
+  color: #E2E8F0 !important;
+}
+
+.light-theme .ai-hero-banner span[class*="text-transparent"] {
+  background: linear-gradient(135deg, #FF8A65 0%, #FFB74D 50%, #FFD54F 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 7. Preset Destination Inspiration Cards */
+.preset-dest-card {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+}
+
+.light-theme .preset-dest-card h4 {
+  color: #FFFFFF !important;
+}
+
+.light-theme .preset-dest-card p {
+  color: #E2E8F0 !important;
+}
+
+.light-theme .preset-dest-card span {
+  color: #FFD4CC !important;
+}
+
+.light-theme .preset-dest-card span[class*="bg-blue-600"] {
+  background-color: #FF5B45 !important;
+  color: #FFFFFF !important;
+}
+
+.light-theme .preset-dest-card.ring-2 {
+  --tw-ring-color: #FF5B45 !important;
+  border-color: #FF5B45 !important;
+}
+
+/* 8. AI Wizard Parameter Option Buttons in Light Mode */
+.light-theme .ai-param-btn-inactive {
+  background-color: #F8F9FA !important;
+  border-color: #EAECEF !important;
+  color: #4B5563 !important;
+}
+
+.light-theme .ai-param-btn-inactive:hover {
+  background-color: #FFF6F4 !important;
+  border-color: #FFD4CC !important;
+  color: #111827 !important;
+}
+
+.light-theme .ai-param-btn-inactive p {
+  color: #111827 !important;
+}
+
+.light-theme .ai-param-btn-inactive p:last-child {
+  color: #6B7280 !important;
 }
 
 /* Custom scrollbars */
@@ -360,6 +566,20 @@
 
 .bg-gradient-accent {
   background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+}
+
+.light-theme .text-gradient {
+  background: linear-gradient(135deg, #FF644E 0%, #F59E0B 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.light-theme .bg-gradient-primary {
+  background: linear-gradient(135deg, #FF644E 0%, #FF4538 100%) !important;
+}
+
+.light-theme .bg-gradient-accent {
+  background: linear-gradient(135deg, #FF5B45 0%, #F59E0B 100%) !important;
 }
 
 /* Pulse badge animation */

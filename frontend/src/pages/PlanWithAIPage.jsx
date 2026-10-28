@@ -162,24 +162,24 @@ export const PlanWithAIPage = ({ setActiveTab }) => {
   return (
     <div className="p-6 max-w-6xl mx-auto flex flex-col gap-8 pb-20">
       {/* Header Banner */}
-      <div className="relative rounded-3xl bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-purple-900/40 border border-white/10 p-8 overflow-hidden shadow-2xl backdrop-blur-xl">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative rounded-3xl p-8 overflow-hidden shadow-2xl border border-indigo-500/20 ai-hero-banner">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-xs font-bold mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-sky-300 text-xs font-bold mb-4 shadow-sm backdrop-blur-md">
+            <Sparkles className="w-3.5 h-3.5 text-sky-300 animate-pulse" />
             <span>AI Co-Planner Engine v2.5</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
             Design your ideal trip in seconds with{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-indigo-200 to-purple-300 font-black">
               TripPlan AI
             </span>
           </h1>
 
-          <p className="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-200 mt-2.5 leading-relaxed font-normal">
             Tell us where you want to go and your travel style. Our neural engine synthesizes route-optimized daily timelines, category budgets, and smart packing checklists.
           </p>
         </div>
@@ -187,32 +187,55 @@ export const PlanWithAIPage = ({ setActiveTab }) => {
 
       {/* Preset Inspirations Bar */}
       <div>
-        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+        <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
           Instant Destination Inspiration
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {presets.map((p) => (
-            <div
-              key={p.name}
-              onClick={() => handleApplyPreset(p)}
-              className={`group relative rounded-2xl overflow-hidden border p-3.5 cursor-pointer transition-all ${
-                destination.toLowerCase().includes(p.name.toLowerCase().split(',')[0])
-                  ? 'border-blue-500 ring-2 ring-blue-500/30 bg-[#18233C]'
-                  : 'border-white/10 bg-[#121927]/80 hover:border-white/20 hover:scale-[1.02]'
-              }`}
-            >
-              <img
-                src={p.img}
-                alt={p.name}
-                className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity"
-              />
-              <div className="relative z-10">
-                <span className="text-[10px] font-bold text-blue-400 block">{p.days} Days • {p.pace}</span>
-                <h4 className="text-sm font-bold text-white mt-0.5">{p.name}</h4>
-                <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">{p.desc}</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
+          {presets.map((p) => {
+            const isSelected = destination.toLowerCase().includes(p.name.toLowerCase().split(',')[0]);
+            return (
+              <div
+                key={p.name}
+                onClick={() => handleApplyPreset(p)}
+                className={`group relative rounded-2xl overflow-hidden min-h-[125px] p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 select-none preset-dest-card ${
+                  isSelected
+                    ? 'ring-2 ring-blue-500 border-blue-400 shadow-lg shadow-blue-500/25 scale-[1.02]'
+                    : 'border border-white/10 hover:border-blue-400/40 hover:shadow-lg hover:scale-[1.01]'
+                }`}
+              >
+                {/* Full-bleed rich travel image */}
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-500 brightness-[0.72] contrast-[1.08]"
+                />
+                {/* Dark gradient overlay scrim for 100% legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-slate-950/20 group-hover:from-slate-950 transition-colors" />
+
+                {/* Top status bar with pill & check */}
+                <div className="relative z-10 flex items-center justify-between mb-auto pb-1">
+                  <span className="text-[10px] font-bold text-sky-200 px-2.5 py-0.5 rounded-full bg-slate-900/80 border border-sky-400/30 backdrop-blur-md">
+                    {p.days} Days • {p.pace.charAt(0).toUpperCase() + p.pace.slice(1)}
+                  </span>
+                  {isSelected && (
+                    <span className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shadow-md shadow-blue-500/40">
+                      ✓
+                    </span>
+                  )}
+                </div>
+
+                {/* Bottom title and description */}
+                <div className="relative z-10 pt-2">
+                  <h4 className="text-sm font-bold text-white tracking-tight drop-shadow-sm group-hover:text-sky-200 transition-colors">
+                    {p.name}
+                  </h4>
+                  <p className="text-[11px] text-slate-200 mt-0.5 line-clamp-1 font-normal drop-shadow-sm">
+                    {p.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -269,10 +292,10 @@ export const PlanWithAIPage = ({ setActiveTab }) => {
                     key={d}
                     type="button"
                     onClick={() => setDays(d)}
-                    className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${
+                    className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                       days === d
-                        ? 'bg-blue-500 text-white shadow-sm'
-                        : 'bg-[#18233C] text-slate-400 hover:text-white border border-white/5'
+                        ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 border border-blue-500'
+                        : 'ai-param-btn-inactive bg-[#18233C] text-slate-400 hover:text-white border border-white/5'
                     }`}
                   >
                     {d}d
@@ -298,14 +321,14 @@ export const PlanWithAIPage = ({ setActiveTab }) => {
                     key={item.id}
                     type="button"
                     onClick={() => setPace(item.id)}
-                    className={`p-3 rounded-2xl border text-left transition-all ${
+                    className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
                       pace === item.id
-                        ? 'bg-blue-500/20 border-blue-500 text-white shadow-sm'
-                        : 'bg-[#18233C]/60 border-white/5 text-slate-400 hover:text-white hover:border-white/15'
+                        ? 'bg-blue-600 border-blue-500 text-white shadow-md shadow-blue-500/20'
+                        : 'ai-param-btn-inactive bg-[#18233C]/60 border-white/5 text-slate-400 hover:text-white hover:border-white/15'
                     }`}
                   >
-                    <p className="text-xs font-bold text-white">{item.label}</p>
-                    <p className="text-[10px] text-slate-400 mt-0.5">{item.desc}</p>
+                    <p className={`text-xs font-bold ${pace === item.id ? 'text-white' : 'text-slate-200'}`}>{item.label}</p>
+                    <p className={`text-[10px] mt-0.5 ${pace === item.id ? 'text-blue-100' : 'text-slate-400'}`}>{item.desc}</p>
                   </button>
                 ))}
               </div>
@@ -325,14 +348,14 @@ export const PlanWithAIPage = ({ setActiveTab }) => {
                     key={item.id}
                     type="button"
                     onClick={() => setBudgetLevel(item.id)}
-                    className={`p-3 rounded-2xl border text-left transition-all ${
+                    className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
                       budgetLevel === item.id
-                        ? 'bg-emerald-500/20 border-emerald-500 text-white shadow-sm'
-                        : 'bg-[#18233C]/60 border-white/5 text-slate-400 hover:text-white hover:border-white/15'
+                        ? 'bg-emerald-600 border-emerald-500 text-white shadow-md shadow-emerald-500/20'
+                        : 'ai-param-btn-inactive bg-[#18233C]/60 border-white/5 text-slate-400 hover:text-white hover:border-white/15'
                     }`}
                   >
-                    <span className="text-[11px] font-mono font-bold text-emerald-400">{item.symbol}</span>
-                    <p className="text-xs font-bold text-white mt-0.5">{item.label}</p>
+                    <span className={`text-[11px] font-mono font-bold ${budgetLevel === item.id ? 'text-emerald-100' : 'text-emerald-400'}`}>{item.symbol}</span>
+                    <p className={`text-xs font-bold mt-0.5 ${budgetLevel === item.id ? 'text-white' : 'text-slate-200'}`}>{item.label}</p>
                   </button>
                 ))}
               </div>
@@ -352,10 +375,10 @@ export const PlanWithAIPage = ({ setActiveTab }) => {
                     key={interest}
                     type="button"
                     onClick={() => toggleInterest(interest)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+                    className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-indigo-500 text-white shadow-sm border border-indigo-400/30'
-                        : 'bg-[#18233C] text-slate-400 hover:text-slate-200 border border-white/5'
+                        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20 border border-indigo-500'
+                        : 'ai-param-btn-inactive bg-[#18233C] text-slate-400 hover:text-slate-200 border border-white/5'
                     }`}
                   >
                     {interest}

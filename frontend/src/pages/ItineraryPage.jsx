@@ -99,7 +99,7 @@ export const ItineraryPage = () => {
 
       {/* Horizontal Day Tabs */}
       {days.length > 0 && (
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none day-tabs-container">
           {days.map((item) => {
             const isSelected = Number(selectedDay) === Number(item.day);
             const dayActsCount = activities.filter((a) => Number(a.day) === Number(item.day)).length;
@@ -108,17 +108,17 @@ export const ItineraryPage = () => {
               <button
                 key={item.day}
                 onClick={() => setSelectedDay(item.day)}
-                className={`p-3.5 rounded-2xl flex flex-col items-center justify-center border transition-all min-w-[120px] shrink-0 ${
+                className={`p-3.5 rounded-2xl flex flex-col items-center justify-center border transition-all min-w-[120px] shrink-0 cursor-pointer select-none outline-none focus:outline-none ${
                   isSelected
-                    ? 'bg-[#18233C] text-white border-blue-500/50 shadow-lg shadow-blue-500/10'
-                    : 'bg-[#121927] text-slate-400 border-white/[0.06] hover:bg-[#162033] hover:text-white'
+                    ? 'day-tab-active bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-500/20'
+                    : 'day-tab-inactive bg-[#121927] text-slate-400 border-white/[0.06] hover:bg-[#162033] hover:text-white'
                 }`}
               >
-                <span className="text-sm font-bold">{item.label}</span>
-                <span className={`text-xs mt-0.5 ${isSelected ? 'text-blue-300 font-semibold' : 'text-slate-400'}`}>
+                <span className={`text-sm font-bold ${isSelected ? 'text-white' : 'text-slate-200'}`}>{item.label}</span>
+                <span className={`text-xs mt-0.5 ${isSelected ? 'text-blue-100 font-semibold' : 'text-slate-400'}`}>
                   {item.sublabel}
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono mt-1">
+                <span className={`text-[10px] font-mono mt-1 ${isSelected ? 'text-blue-200' : 'text-slate-400'}`}>
                   {dayActsCount} activities
                 </span>
               </button>
