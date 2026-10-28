@@ -33,7 +33,8 @@ exports.register = async (req, res) => {
     });
 
     const token = generateToken(user);
-    const { password: _, ...userWithoutPassword } = user;
+    const userObj = user.toObject ? user.toObject() : user;
+    const { password: _, ...userWithoutPassword } = userObj;
 
     res.status(201).json({
       message: 'Account created successfully',
@@ -64,7 +65,8 @@ exports.login = async (req, res) => {
     }
 
     const token = generateToken(user);
-    const { password: _, ...userWithoutPassword } = user;
+    const userObj = user.toObject ? user.toObject() : user;
+    const { password: _, ...userWithoutPassword } = userObj;
 
     res.json({
       message: 'Login successful',

@@ -40,7 +40,33 @@ export const AuthProvider = ({ children }) => {
   };
 
   const demoLogin = async () => {
-    return { success: false, error: 'Demo account is disabled' };
+    setLoading(true);
+    try {
+      const demoEmail = 'alex.morgan@tripplan.com';
+      const demoPassword = 'password123';
+      let res;
+      try {
+        res = await api.login({ email: demoEmail, password: demoPassword });
+      } catch (loginErr) {
+        // If not registered yet, auto-create the demo user
+        res = await api.register({
+          name: 'Alex Morgan',
+          email: demoEmail,
+          password: demoPassword
+        });
+      }
+      if (res?.token) {
+        setAuthToken(res.token);
+        setToken(res.token);
+        setUser(res.user);
+        return { success: true, user: res.user };
+      }
+      return { success: false, error: 'Could not log in to demo account' };
+    } catch (err) {
+      return { success: false, error: err.message };
+    } finally {
+      setLoading(false);
+    }
   };
 
   const register = async (name, email, password) => {

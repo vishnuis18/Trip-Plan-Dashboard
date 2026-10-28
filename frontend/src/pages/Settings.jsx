@@ -14,7 +14,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { useTrip } from '../context/TripContext';
 
-export const Settings = () => {
+export const Settings = ({ setActiveTab }) => {
   const { user, updateProfile } = useAuth();
   const { activeTrip, activities, expenses, savedPlaces } = useTrip();
 
@@ -77,6 +77,27 @@ export const Settings = () => {
             <User className="w-4 h-4 text-blue-400" />
             <h3 className="text-sm font-bold text-white">Profile Details</h3>
           </div>
+
+          {!user && (
+            <div className="p-3.5 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-bold text-white">Exploring as a Guest</p>
+                <p className="text-[11px] text-slate-300">Sign in or create an account to save trips, sync notes, and unlock custom AI co-planning.</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (setActiveTab) {
+                    window.history.pushState({}, '', '/login');
+                    setActiveTab('login');
+                  }
+                }}
+                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shrink-0 shadow-md shadow-blue-500/20 cursor-pointer"
+              >
+                Sign In / Register
+              </button>
+            </div>
+          )}
 
           <div className="flex flex-col sm:flex-row items-center gap-5">
             <img

@@ -74,7 +74,14 @@
 }
 
 .light-theme aside nav button {
-  color: #64748B !important;
+  color: #475569 !important;
+  outline: none !important;
+  border: 1px solid transparent !important;
+}
+
+.light-theme aside nav button:focus,
+.light-theme aside nav button:focus-visible {
+  outline: none !important;
 }
 
 .light-theme aside nav button:hover {
@@ -82,13 +89,20 @@
   color: #111827 !important;
 }
 
-/* Active Sidebar Nav Item (Warm Soft Coral Wash & Pill) */
+/* Active Sidebar Nav Item (Warm Soft Coral Wash & Pill, NO black outline) */
 .light-theme aside nav button[class*="bg-[#18233C]"] {
   background-color: #FFF2F0 !important;
   color: #FF5B45 !important;
-  border-color: #FFD4CC !important;
+  border: 1px solid #FFD4CC !important;
   box-shadow: 0 1px 4px rgba(255, 91, 69, 0.12) !important;
   font-weight: 700 !important;
+  outline: none !important;
+}
+
+.light-theme aside nav button[class*="bg-[#18233C]"]:focus,
+.light-theme aside nav button[class*="bg-[#18233C]"]:focus-visible {
+  outline: none !important;
+  border: 1px solid #FFD4CC !important;
 }
 
 .light-theme aside nav button[class*="bg-[#18233C]"] svg {
@@ -96,6 +110,64 @@
 }
 
 .light-theme aside nav button[class*="bg-[#18233C]"] span {
+  color: #FF5B45 !important;
+}
+
+/* Sidebar Search Shortcut Badge */
+.light-theme .sidebar-search-kbd {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #CBD5E1 !important;
+}
+
+/* Sidebar AI Badge in Light Mode */
+.light-theme .sidebar-ai-pill,
+.light-theme span.sidebar-ai-pill {
+  background: #FFF1F2 !important;
+  color: #E11D48 !important;
+  border: 1px solid #FECDD3 !important;
+  box-shadow: none !important;
+}
+
+/* Sidebar Trips Counter Badge in Light Mode */
+.light-theme .sidebar-badge {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+.light-theme aside nav button[class*="bg-[#18233C]"] .sidebar-badge {
+  background-color: #FFE4DE !important;
+  color: #FF5B45 !important;
+  border: 1px solid #FFD4CC !important;
+}
+
+/* Sidebar Bottom Profile Card in Light Mode */
+.light-theme .sidebar-profile-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #EAECEF !important;
+  box-shadow: 0 2px 8px rgba(17, 24, 39, 0.04) !important;
+}
+
+.light-theme .sidebar-profile-card:hover {
+  background-color: #FFF9F7 !important;
+  border-color: #FFD4CC !important;
+  box-shadow: 0 4px 12px rgba(255, 91, 69, 0.1) !important;
+}
+
+.light-theme .sidebar-profile-card p:first-child {
+  color: #0F172A !important;
+}
+
+.light-theme .sidebar-profile-card p:last-child {
+  color: #FF5B45 !important;
+}
+
+.light-theme .sidebar-profile-card svg {
+  color: #94A3B8 !important;
+}
+
+.light-theme .sidebar-profile-card:hover svg {
   color: #FF5B45 !important;
 }
 
@@ -496,6 +568,74 @@
 
 .light-theme .ai-param-btn-inactive p:last-child {
   color: #6B7280 !important;
+}
+
+/* 9. Login Hero Banner Protection: Keep Pure White & High Contrast in All Themes */
+.login-hero-banner,
+.light-theme .login-hero-banner {
+  background: linear-gradient(135deg, #0B101D 0%, #0F172A 50%, #171E36 100%) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.login-hero-banner h1,
+.login-hero-banner h2,
+.login-hero-banner h3,
+.login-hero-banner h4,
+.light-theme .login-hero-banner h1,
+.light-theme .login-hero-banner h2,
+.light-theme .login-hero-banner h3,
+.light-theme .login-hero-banner h4 {
+  color: #FFFFFF !important;
+}
+
+.login-hero-banner p,
+.light-theme .login-hero-banner p {
+  color: #CBD5E1 !important;
+}
+
+.login-hero-banner .login-hero-badge,
+.light-theme .login-hero-banner .login-hero-badge {
+  background-color: rgba(59, 130, 246, 0.18) !important;
+  border-color: rgba(96, 165, 250, 0.35) !important;
+}
+
+.login-hero-banner .login-hero-badge span,
+.light-theme .login-hero-banner .login-hero-badge span {
+  color: #93C5FD !important;
+}
+
+.login-hero-banner .login-value-pill,
+.light-theme .login-hero-banner .login-value-pill {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.login-hero-banner .login-value-pill span,
+.light-theme .login-hero-banner .login-value-pill span {
+  color: #F8FAFC !important;
+}
+
+.login-hero-banner .login-preview-card,
+.light-theme .login-hero-banner .login-preview-card {
+  background-color: rgba(20, 27, 45, 0.94) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.login-hero-banner .login-preview-card span:not([class*="text-emerald"]),
+.login-hero-banner .login-preview-card p,
+.light-theme .login-hero-banner .login-preview-card span:not([class*="text-emerald"]),
+.light-theme .login-hero-banner .login-preview-card p {
+  color: #E2E8F0 !important;
+}
+
+.login-hero-banner .login-social-proof,
+.light-theme .login-hero-banner .login-social-proof {
+  border-top-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.login-hero-banner .login-social-proof span,
+.light-theme .login-hero-banner .login-social-proof span {
+  color: #CBD5E1 !important;
 }
 
 /* Custom scrollbars */

@@ -3,7 +3,7 @@ import { Search, Bell, ChevronDown, Plus, LogOut, User, Check, Sun, Moon } from 
 import { useTrip } from '../context/TripContext';
 import { useAuth } from '../context/AuthContext';
 
-export const Navbar = ({ onSearchChange }) => {
+export const Navbar = ({ setActiveTab, onSearchChange }) => {
   const { notifications, openModal, activeTrip } = useTrip();
   const { user, logout } = useAuth();
   const [showNotifications, setShowNotifications] = useState(false);
@@ -133,27 +133,47 @@ export const Navbar = ({ onSearchChange }) => {
                 <p className="text-[11px] text-slate-400 truncate">{user?.email || 'Not signed in'}</p>
               </div>
 
-              <button
-                onClick={() => {
-                  openModal('auth');
-                  setShowUserMenu(false);
-                }}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-[#1C253C] transition-colors text-left"
-              >
-                <User className="w-3.5 h-3.5 text-blue-400" />
-                <span>Switch / Sign In</span>
-              </button>
+              {!user ? (
+                <button
+                  onClick={() => {
+                    if (setActiveTab) {
+                      window.history.pushState({}, '', '/login');
+                      setActiveTab('login');
+                    } else {
+                      openModal('auth');
+                    }
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-blue-400 hover:text-white hover:bg-blue-600/20 transition-colors text-left cursor-pointer"
+                >
+                  <User className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Sign In / Register</span>
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      if (setActiveTab) setActiveTab('settings');
+                      setShowUserMenu(false);
+                    }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-[#1C253C] transition-colors text-left cursor-pointer"
+                  >
+                    <User className="w-3.5 h-3.5 text-blue-400" />
+                    <span>My Account & Settings</span>
+                  </button>
 
-              <button
-                onClick={() => {
-                  logout();
-                  setShowUserMenu(false);
-                }}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-rose-400 hover:bg-rose-500/10 transition-colors text-left"
-              >
-                <LogOut className="w-3.5 h-3.5" />
-                <span>Sign Out</span>
-              </button>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setShowUserMenu(false);
+                    }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-rose-400 hover:bg-rose-500/10 transition-colors text-left cursor-pointer"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span>Sign Out</span>
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>

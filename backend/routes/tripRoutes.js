@@ -3,6 +3,9 @@ const router = express.Router();
 const tripController = require('../controllers/tripController');
 const activityController = require('../controllers/activityController');
 const expenseController = require('../controllers/expenseController');
+const { optionalAuthMiddleware } = require('../middleware/authMiddleware');
+
+router.use(optionalAuthMiddleware);
 
 // All trips
 router.get('/', tripController.getTrips);
