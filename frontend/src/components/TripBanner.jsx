@@ -84,7 +84,7 @@ export const TripBanner = ({ onTripCardClick }) => {
 
   return (
     <div className="relative rounded-3xl overflow-hidden min-h-[290px] p-8 flex flex-col justify-between border border-white/10 shadow-2xl group trip-hero-banner">
-      {/* Background Trip Banner Image */}
+      {/* Background Trip Banner Image - Vivid & preserved across both light and dark themes */}
       <img
         src={activeTrip?.coverImage || '/images/mount_fuji.jpg'}
         alt={destination}
@@ -92,11 +92,11 @@ export const TripBanner = ({ onTripCardClick }) => {
           e.currentTarget.onerror = null;
           e.currentTarget.src = '/images/mount_fuji.jpg';
         }}
-        className="absolute inset-0 w-full h-full object-cover object-center transform scale-100 group-hover:scale-105 transition-transform duration-1000 brightness-[0.78] contrast-[1.08]"
+        className="absolute inset-0 w-full h-full object-cover object-center transform scale-100 group-hover:scale-105 transition-transform duration-1000 brightness-[0.82] contrast-[1.08] pointer-events-none"
       />
-      {/* Photographic Gradient Overlays for perfect legibility in all themes */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/20" />
+      {/* Photographic Scrim Overlays for cinematic contrast in both dark & light themes */}
+      <div className="trip-hero-scrim-h absolute inset-0 pointer-events-none" />
+      <div className="trip-hero-scrim-v absolute inset-0 pointer-events-none" />
 
       {/* Floating 'Your next trip' Glass Card (Top Right) */}
       <div 

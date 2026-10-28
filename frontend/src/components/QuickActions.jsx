@@ -73,7 +73,7 @@ export const QuickActions = ({ setActiveTab }) => {
   ];
 
   return (
-    <div className="rounded-3xl bg-[#121927]/90 border border-white/[0.08] p-5 shadow-xl backdrop-blur-md">
+    <div className="rounded-3xl bg-[#121927]/90 border border-white/[0.08] p-5 shadow-xl backdrop-blur-md quick-actions-card relative z-10">
       {/* Header */}
       <div className="flex items-center gap-2.5 pb-3 mb-2 border-b border-white/[0.06]">
         <FileSpreadsheet className="w-4 h-4 text-blue-400" />

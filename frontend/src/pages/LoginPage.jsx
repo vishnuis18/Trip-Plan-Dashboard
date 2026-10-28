@@ -171,8 +171,8 @@ export const LoginPage = ({ onSuccess, onBack }) => {
               className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.80] contrast-[1.08] pointer-events-none transition-transform duration-1000"
             />
             {/* Photographic Gradient Overlays for perfect legibility matching TripBanner */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/20 pointer-events-none" />
+            <div className="trip-hero-scrim-h absolute inset-0 pointer-events-none" />
+            <div className="trip-hero-scrim-v absolute inset-0 pointer-events-none" />
 
             {/* Top Tagline */}
             <div className="relative z-10 flex flex-col gap-3">

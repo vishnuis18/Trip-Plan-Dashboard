@@ -179,8 +179,9 @@ export const SharedTripView = ({ slugOrId, onBackToApp }) => {
             alt={trip.destination}
             className="absolute inset-0 w-full h-full object-cover brightness-[0.75]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0E17] via-transparent to-black/20" />
+          {/* Photographic Scrim Overlays */}
+          <div className="trip-hero-scrim-h absolute inset-0 pointer-events-none" />
+          <div className="trip-hero-scrim-v absolute inset-0 pointer-events-none" />
 
           <div className="relative z-10">
             <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 border border-blue-500/40 text-blue-300">

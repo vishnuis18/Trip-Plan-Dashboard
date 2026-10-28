@@ -129,6 +129,25 @@
   box-shadow: none !important;
 }
 
+/* Sidebar Live FX Badge (Dark & Light Mode) */
+.sidebar-live-pill {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #6EE7B7;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.light-theme .sidebar-live-pill {
+  background-color: #ECFDF5 !important;
+  color: #047857 !important;
+  border: 1px solid #A7F3D0 !important;
+}
+
+.light-theme aside nav button[class*="bg-[#18233C]"] .sidebar-live-pill {
+  background-color: #FFE4DE !important;
+  color: #FF5B45 !important;
+  border: 1px solid #FFD4CC !important;
+}
+
 /* Sidebar Trips Counter Badge in Light Mode */
 .light-theme .sidebar-badge {
   background-color: #F1F5F9 !important;
@@ -366,6 +385,17 @@
   color: #9CA3AF !important;
 }
 
+/* Universal option styling for any remaining select dropdowns */
+option {
+  background-color: #18233C;
+  color: #F3F4F6;
+}
+
+.light-theme option {
+  background-color: #FFFFFF !important;
+  color: #111827 !important;
+}
+
 /* Typography Hierarchy */
 .light-theme h1,
 .light-theme h2,
@@ -397,10 +427,38 @@
 }
 
 /* =========================================================================
-   PROTECTED PHOTOGRAPHIC OVERLAYS: Keep Bright White for Maximum Contrast
+   PROTECTED PHOTOGRAPHIC OVERLAYS: Keep Background Scenery Crisp & Legible
    ========================================================================= */
 
-/* 1. Trip Hero Banner (Mount Fuji / Landscape) */
+/* Dedicated Photographic Scrim Overlays (Both Dark & Light Themes) */
+.trip-hero-scrim-h,
+.light-theme .trip-hero-scrim-h {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0) 100%) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.trip-hero-scrim-v,
+.light-theme .trip-hero-scrim-v {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.20) 100%) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 1. Trip Hero Banner (Mount Fuji / Landscape Scenery preserved in all themes) */
+.trip-hero-banner,
+.light-theme .trip-hero-banner {
+  background-color: #0B0E17 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.trip-hero-banner img,
+.light-theme .trip-hero-banner img {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .light-theme .trip-hero-banner,
 .light-theme .trip-hero-banner h1,
 .light-theme .trip-hero-banner h2,
@@ -443,7 +501,8 @@
 }
 
 /* 3. Primary Warm Coral Action Buttons (TripNest CTA style) */
-.light-theme [class*="bg-gradient-to-r"],
+.light-theme button[class*="bg-gradient-to-r"],
+.light-theme a[class*="bg-gradient-to-r"],
 .light-theme button[class*="bg-blue-600"],
 .light-theme button[class*="bg-blue-500"] {
   background: linear-gradient(135deg, #FF644E 0%, #FF4538 100%) !important;
@@ -453,26 +512,295 @@
 
 .light-theme button[class*="bg-blue-600"] *,
 .light-theme button[class*="bg-blue-500"] *,
+.light-theme button[class*="bg-gradient-to-r"] *,
+.light-theme a[class*="bg-gradient-to-r"] *,
 .light-theme .workspace-tab-active,
 .light-theme .workspace-tab-active *,
 .light-theme .day-tab-active,
-.light-theme .day-tab-active *,
-.light-theme [class*="bg-gradient-to-r"] * {
+.light-theme .day-tab-active * {
   color: #FFFFFF !important;
 }
 
-/* 4. Live FX Converter Green Estimation Box */
+/* 4. Live FX Converter Green Estimation Box & Currency Dropdowns */
 .light-theme div[class*="from-emerald-500/10"] {
   background: linear-gradient(to right, #ECFDF5, #F0FDFA) !important;
   border-color: #A7F3D0 !important;
 }
 
-.light-theme div[class*="from-emerald-500/10"] span {
+.light-theme div[class*="from-emerald-500/10"] > div > span:first-child {
   color: #065F46 !important;
 }
 
 .light-theme div[class*="from-emerald-500/10"] span[class*="text-xl"] {
   color: #047857 !important;
+}
+
+/* FX Converter Theme Styling */
+.fx-amount-input {
+  transition: all 0.2s ease;
+}
+
+.light-theme .fx-amount-input:focus {
+  border-color: #10B981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
+}
+
+.fx-rate-badge {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.light-theme .fx-rate-badge {
+  background-color: #F8F9FA !important;
+  border: 1px solid #EAECEF !important;
+}
+
+.light-theme .fx-rate-badge span:first-child {
+  color: #6B7280 !important;
+}
+
+.light-theme .fx-rate-badge span:last-child {
+  color: #111827 !important;
+}
+
+.fx-swap-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94A3B8;
+  transition: all 0.2s ease;
+}
+
+.fx-swap-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.light-theme .fx-swap-btn {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+  color: #4B5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.light-theme .fx-swap-btn:hover {
+  background-color: #F3F4F6 !important;
+  border-color: #D1D5DB !important;
+  color: #111827 !important;
+}
+
+/* Upper From Currency Button */
+.fx-from-btn {
+  background-color: #18233C;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.fx-from-btn:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: #1E2B4A;
+}
+
+.light-theme .fx-from-btn {
+  background-color: #F8F9FA !important;
+  border: 1px solid #D1D5DB !important;
+  color: #111827 !important;
+}
+
+.light-theme .fx-from-btn:hover {
+  background-color: #F1F5F9 !important;
+  border-color: #9CA3AF !important;
+}
+
+/* Lower Target Currency Pill (Estimated Box) */
+.fx-to-pill {
+  background-color: rgba(24, 35, 60, 0.85);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #6EE7B7;
+}
+
+.fx-to-pill:hover {
+  background-color: #18233C;
+  border-color: rgba(16, 185, 129, 0.6);
+  color: #A7F3D0;
+}
+
+.light-theme .fx-to-pill {
+  background-color: #FFFFFF !important;
+  border: 1px solid #A7F3D0 !important;
+  box-shadow: 0 1px 3px rgba(4, 120, 87, 0.08) !important;
+}
+
+.light-theme .fx-to-pill span {
+  color: #047857 !important;
+}
+
+.light-theme .fx-to-pill svg {
+  color: #047857 !important;
+}
+
+.light-theme .fx-to-pill:hover {
+  background-color: #F0FDF4 !important;
+  border-color: #34D399 !important;
+}
+
+.light-theme .fx-to-pill.active-open,
+.light-theme .fx-to-pill:focus {
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.18) !important;
+}
+
+/* Floating Dropdown Menu */
+.fx-dropdown-menu {
+  background-color: #141B2D;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.light-theme .fx-dropdown-menu {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 12px 30px -4px rgba(17, 24, 39, 0.14), 0 4px 8px -2px rgba(17, 24, 39, 0.06) !important;
+}
+
+.fx-dropdown-item {
+  color: #E2E8F0;
+}
+
+.fx-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.fx-dropdown-item.is-selected {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #6EE7B7;
+  font-weight: 700;
+}
+
+.light-theme .fx-dropdown-item {
+  color: #1F2937 !important;
+}
+
+.light-theme .fx-dropdown-item:hover {
+  background-color: #F3F4F6 !important;
+  color: #111827 !important;
+}
+
+.light-theme .fx-dropdown-item span.fx-curr-code {
+  color: #111827 !important;
+}
+
+.light-theme .fx-dropdown-item span.fx-curr-symbol {
+  color: #059669 !important;
+}
+
+.light-theme .fx-dropdown-item.is-selected {
+  background-color: #ECFDF5 !important;
+  color: #047857 !important;
+  font-weight: 700 !important;
+}
+
+.light-theme .fx-dropdown-item.is-selected span.fx-curr-code,
+.light-theme .fx-dropdown-item.is-selected span.fx-curr-symbol {
+  color: #047857 !important;
+}
+
+/* Stacking context isolation: Ensure FX Dropdown renders above QuickActions & subsequent cards */
+.fx-widget-card {
+  position: relative !important;
+  z-index: 30 !important;
+}
+
+.fx-widget-card.has-open-dropdown,
+.fx-widget-card:has(.active-open) {
+  z-index: 60 !important;
+}
+
+.quick-actions-card {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* =========================================================================
+   EXPLORE & SAVED CARD DESIGN (Strictly matching sample layout)
+   ========================================================================= */
+
+.explore-sample-card {
+  background-color: #121927;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light-theme .explore-sample-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #EAECEF !important;
+  box-shadow: 0 2px 12px -2px rgba(17, 24, 39, 0.06), 0 1px 3px rgba(17, 24, 39, 0.03) !important;
+}
+
+.light-theme .explore-sample-card:hover {
+  border-color: #FFD4CC !important;
+  box-shadow: 0 12px 28px -4px rgba(255, 91, 69, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+.light-theme .explore-card-title {
+  color: #0369A1 !important;
+}
+
+.light-theme .explore-card-title:hover {
+  color: #0284C7 !important;
+}
+
+.explore-cta-btn {
+  background: linear-gradient(135deg, #FF644E 0%, #FF4538 100%) !important;
+  box-shadow: 0 3px 10px rgba(255, 91, 69, 0.3) !important;
+  border: 1px solid #FF5B45 !important;
+  color: #FFFFFF !important;
+}
+
+.explore-cta-btn:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 4px 14px rgba(255, 91, 69, 0.42) !important;
+}
+
+.light-theme .explore-sample-card p {
+  color: #64748B !important;
+}
+
+.light-theme .explore-sample-card strong {
+  color: #1E293B !important;
+}
+
+/* Trip Card Switch Inactive Button */
+.trip-switch-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #CBD5E1;
+}
+
+.trip-switch-btn:hover {
+  background-color: rgba(255, 91, 69, 0.15);
+  border-color: rgba(255, 91, 69, 0.5);
+  color: #FF7A66;
+}
+
+.light-theme .trip-switch-btn {
+  background-color: #F8F9FA !important;
+  border: 1px solid #D1D5DB !important;
+  color: #1F2937 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-theme .trip-switch-btn:hover {
+  background-color: #FFF5F3 !important;
+  border-color: #FF5B45 !important;
+  color: #FF5B45 !important;
+}
+
+.light-theme .trip-switch-btn svg {
+  color: #4B5563 !important;
+}
+
+.light-theme .trip-switch-btn:hover svg {
+  color: #FF5B45 !important;
 }
 
 /* 5. Mobile Bottom Nav in Light Theme */

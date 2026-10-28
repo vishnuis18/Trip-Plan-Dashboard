@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRightLeft, 
   RefreshCw, 
   TrendingUp, 
   DollarSign,
   CheckCircle2,
-  Globe
+  Globe,
+  ChevronDown,
+  Check
 } from 'lucide-react';
 import { useTrip } from '../context/TripContext';
 import { 
@@ -14,6 +16,101 @@ import {
   formatCurrency, 
   CURRENCY_SYMBOLS 
 } from '../services/currencyService';
+
+const CURRENCY_NAMES = {
+  USD: 'US Dollar',
+  EUR: 'Euro',
+  GBP: 'British Pound',
+  JPY: 'Japanese Yen',
+  INR: 'Indian Rupee',
+  AUD: 'Australian Dollar',
+  CAD: 'Canadian Dollar',
+  SGD: 'Singapore Dollar',
+  CHF: 'Swiss Franc',
+  THB: 'Thai Baht'
+};
+
+const CustomCurrencyDropdown = ({ 
+  value, 
+  onChange, 
+  options, 
+  variant = 'default',
+  isOpen,
+  onToggle,
+  onClose
+}) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    }
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, [isOpen, onClose]);
+
+  const isEmerald = variant === 'emerald';
+
+  return (
+    <div className={`relative shrink-0 ${isOpen ? 'z-50' : 'z-10'}`} ref={containerRef}>
+      <button
+        type="button"
+        onClick={onToggle}
+        className={`${
+          isEmerald 
+            ? 'fx-to-pill px-3 py-1.5 rounded-xl font-bold shadow-sm' 
+            : 'fx-from-btn px-3 py-2 rounded-xl font-semibold'
+        } flex items-center gap-1.5 text-xs transition-all focus:outline-none cursor-pointer ${
+          isOpen ? 'active-open ring-2 ring-emerald-500/30' : ''
+        }`}
+        aria-expanded={isOpen}
+      >
+        <span className="font-bold">{value}</span>
+        <span className="font-mono text-[11px] opacity-80">({CURRENCY_SYMBOLS[value] || value})</span>
+        <ChevronDown className={`w-3.5 h-3.5 opacity-75 transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`} />
+      </button>
+
+      {isOpen && (
+        <div className="fx-dropdown-menu absolute right-0 top-full mt-1.5 w-56 rounded-2xl p-1.5 z-50 max-h-56 overflow-y-auto shadow-2xl">
+          <div className="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400 opacity-80 border-b border-white/[0.06] mb-1">
+            Select Currency
+          </div>
+          {options.map((c) => {
+            const isSelected = value === c;
+            return (
+              <button
+                key={c}
+                type="button"
+                onClick={() => {
+                  onChange(c);
+                  onClose();
+                }}
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 text-left rounded-xl text-xs transition-colors fx-dropdown-item cursor-pointer mb-0.5 ${
+                  isSelected ? 'is-selected' : ''
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="font-bold fx-curr-code">{c}</span>
+                  <span className="font-mono text-[11px] opacity-85 fx-curr-symbol font-semibold">
+                    {CURRENCY_SYMBOLS[c] || c}
+                  </span>
+                  <span className="text-[10px] opacity-60 hidden sm:inline">
+                    {CURRENCY_NAMES[c]}
+                  </span>
+                </div>
+                {isSelected && <Check className="w-3.5 h-3.5 shrink-0 text-emerald-500" />}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const CurrencyConverterWidget = () => {
   const { activeTrip } = useTrip();
@@ -26,6 +123,7 @@ export const CurrencyConverterWidget = () => {
   const [amount, setAmount] = useState('100');
   const [rates, setRates] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'from' | 'to' | null
 
   // Update target currency if activeTrip currency changes
   useEffect(() => {
@@ -62,7 +160,7 @@ export const CurrencyConverterWidget = () => {
   const supportedCurrencies = Object.keys(CURRENCY_SYMBOLS);
 
   return (
-    <div className="rounded-3xl bg-[#121927]/90 border border-white/[0.08] p-5 shadow-xl backdrop-blur-md">
+    <div className={`rounded-3xl bg-[#121927]/90 border border-white/[0.08] p-5 shadow-xl backdrop-blur-md fx-widget-card relative ${activeDropdown ? 'z-50 has-open-dropdown' : 'z-30'}`}>
       {/* Header */}
       <div className="flex items-center justify-between pb-3.5 mb-3 border-b border-white/[0.06]">
         <div className="flex items-center gap-2.5">
@@ -88,8 +186,8 @@ export const CurrencyConverterWidget = () => {
       </div>
 
       {/* Exchange Rate Badge */}
-      <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-black/20 border border-white/[0.04] mb-3">
-        <span className="text-[11px] text-slate-400">Current Rate:</span>
+      <div className="fx-rate-badge flex items-center justify-between px-3 py-2 rounded-xl mb-3">
+        <span className="text-[11px] text-slate-400 font-medium">Current Rate:</span>
         <span className="text-xs font-bold text-white font-mono">
           1 {fromCurrency} = {singleRate.toLocaleString()} {toCurrency}
         </span>
@@ -105,31 +203,29 @@ export const CurrencyConverterWidget = () => {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="Amount"
-              className="w-full bg-[#18233C] border border-white/10 rounded-xl px-3 py-2 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono"
+              className="fx-amount-input w-full bg-[#18233C] border border-white/10 rounded-xl px-3 py-2 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono"
             />
           </div>
 
-          <select
+          <CustomCurrencyDropdown
             value={fromCurrency}
-            onChange={(e) => setFromCurrency(e.target.value)}
-            className="bg-[#18233C] border border-white/10 rounded-xl px-2.5 py-2 text-xs font-semibold text-white focus:outline-none focus:border-emerald-500"
-          >
-            {supportedCurrencies.map((c) => (
-              <option key={c} value={c}>
-                {c} ({CURRENCY_SYMBOLS[c]})
-              </option>
-            ))}
-          </select>
+            onChange={setFromCurrency}
+            options={supportedCurrencies}
+            variant="default"
+            isOpen={activeDropdown === 'from'}
+            onToggle={() => setActiveDropdown(activeDropdown === 'from' ? null : 'from')}
+            onClose={() => setActiveDropdown(null)}
+          />
         </div>
 
         {/* Swap Button */}
         <div className="flex justify-center -my-1">
           <button
             onClick={handleSwap}
-            className="p-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-all shadow-sm"
+            className="fx-swap-btn p-1.5 rounded-full shadow-sm cursor-pointer"
             title="Swap currencies"
           >
-            <ArrowRightLeft className="w-3 h-3 transform rotate-90" />
+            <ArrowRightLeft className="w-3.5 h-3.5 transform rotate-90" />
           </button>
         </div>
 
@@ -144,17 +240,15 @@ export const CurrencyConverterWidget = () => {
             </span>
           </div>
 
-          <select
+          <CustomCurrencyDropdown
             value={toCurrency}
-            onChange={(e) => setToCurrency(e.target.value)}
-            className="bg-[#18233C]/80 border border-emerald-500/30 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-emerald-300 focus:outline-none"
-          >
-            {supportedCurrencies.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+            onChange={setToCurrency}
+            options={supportedCurrencies}
+            variant="emerald"
+            isOpen={activeDropdown === 'to'}
+            onToggle={() => setActiveDropdown(activeDropdown === 'to' ? null : 'to')}
+            onClose={() => setActiveDropdown(null)}
+          />
         </div>
       </div>
 

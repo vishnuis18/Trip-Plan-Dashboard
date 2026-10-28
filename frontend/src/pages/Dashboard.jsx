@@ -69,18 +69,22 @@ export const Dashboard = ({ setActiveTab, onSelectNeighborhood }) => {
           <div className="xl:col-span-4 2xl:col-span-3 flex flex-col gap-6">
             <TripSummary onViewDetailsClick={() => setActiveTab('trips')} />
             
-            {/* Live FX Exchange Rate Converter (Frankfurter ECB) */}
-            <CurrencyConverterWidget />
+            {/* Live FX Exchange Rate Converter (Frankfurter ECB) - High Z-Index for Dropdown Stacking */}
+            <div className="relative z-30">
+              <CurrencyConverterWidget />
+            </div>
 
-            <QuickActions 
-              setActiveTab={(tab) => {
-                if (['itinerary', 'budget'].includes(tab)) {
-                  setActiveWorkspaceTab(tab);
-                } else {
-                  setActiveTab(tab);
-                }
-              }} 
-            />
+            <div className="relative z-10">
+              <QuickActions 
+                setActiveTab={(tab) => {
+                  if (['itinerary', 'budget'].includes(tab)) {
+                    setActiveWorkspaceTab(tab);
+                  } else {
+                    setActiveTab(tab);
+                  }
+                }} 
+              />
+            </div>
             <InspirationCard onExploreClick={() => setActiveTab('explore')} />
             <AssistanceCard />
           </div>

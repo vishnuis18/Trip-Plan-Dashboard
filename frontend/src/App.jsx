@@ -16,6 +16,7 @@ import { Settings } from './pages/Settings';
 import { PlanWithAIPage } from './pages/PlanWithAIPage';
 import { SharedTripView } from './pages/SharedTripView';
 import { LoginPage } from './pages/LoginPage';
+import { FXPage } from './pages/FXPage';
 
 // Modals
 import { AddTripModal } from './components/modals/AddTripModal';
@@ -77,6 +78,7 @@ const MainLayout = () => {
           {activeTab === 'trips' && <Trips setActiveTab={setActiveTab} />}
           {activeTab === 'explore' && <Explore />}
           {activeTab === 'budget' && <Budget />}
+          {activeTab === 'fx' && <FXPage setActiveTab={setActiveTab} />}
           {activeTab === 'itinerary' && <ItineraryPage />}
           {activeTab === 'saved' && <SavedPlaces setActiveTab={setActiveTab} />}
           {activeTab === 'settings' && <Settings setActiveTab={setActiveTab} />}

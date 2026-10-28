@@ -11,7 +11,8 @@ import {
   ArrowRight,
   ChevronRight,
   MapPin,
-  Sparkles
+  Sparkles,
+  ArrowRightLeft
 } from 'lucide-react';
 import { useTrip } from '../context/TripContext';
 import { useAuth } from '../context/AuthContext';
@@ -26,6 +27,7 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
     { id: 'trips', label: 'Trips', icon: Plane, badge: trips?.length || 0 },
     { id: 'explore', label: 'Explore', icon: Compass },
     { id: 'budget', label: 'Budget', icon: Wallet },
+    { id: 'fx', label: 'Live FX Converter', icon: ArrowRightLeft },
     { id: 'itinerary', label: 'Itinerary', icon: CalendarDays },
     { id: 'saved', label: 'Saved', icon: Heart },
   ];
