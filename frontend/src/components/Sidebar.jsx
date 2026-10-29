@@ -49,13 +49,13 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
         {/* Quick Search Button / Input */}
         <div 
           onClick={() => openModal('search')}
-          className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#141B2D]/80 border border-white/[0.08] hover:border-blue-500/40 text-slate-400 hover:text-slate-200 transition-all cursor-pointer shadow-inner group"
+          className="sidebar-search-btn flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#141B2D]/80 border border-white/[0.08] hover:border-[#FF5B45]/40 text-slate-400 hover:text-white transition-all cursor-pointer shadow-sm group"
         >
-          <div className="flex items-center gap-2.5 text-xs">
-            <Search className="w-4 h-4 text-slate-400 group-hover:text-blue-400 transition-colors" />
-            <span>Search anything...</span>
+          <div className="flex items-center gap-2.5 text-xs font-semibold">
+            <Search className="w-4 h-4 text-slate-400 group-hover:text-[#FF5B45] transition-colors" />
+            <span className="text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white">Search anything...</span>
           </div>
-          <kbd className="sidebar-search-kbd text-[10px] bg-slate-800/80 text-slate-400 px-1.5 py-0.5 rounded border border-white/10 font-mono">
+          <kbd className="sidebar-search-kbd text-[10px] font-bold bg-slate-800/80 text-slate-400 px-2 py-0.5 rounded-md border border-white/10 font-mono">
             ⌘ K
           </kbd>
         </div>

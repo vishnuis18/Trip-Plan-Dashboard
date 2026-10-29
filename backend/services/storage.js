@@ -170,13 +170,23 @@ class StorageService {
   // --- Trips ---
   async getTripsByUser(userId) {
     if (this.isMongoConnected) {
-      const query = userId 
-        ? { $or: [{ userId }, { userId: '660000000000000000000001' }] } 
-        : {};
-      return await Trip.find(query).sort({ createdAt: -1 });
+      let trips = [];
+      if (userId && userId !== '660000000000000000000001') {
+        trips = await Trip.find({
+          $or: [{ userId }, { userId: '660000000000000000000001' }]
+        }).sort({ createdAt: -1 });
+      }
+      if (!trips || trips.length === 0) {
+        trips = await Trip.find().sort({ createdAt: -1 });
+      }
+      return trips;
     }
     this.ensureLoaded();
-    return this.memoryData.trips.filter(t => !userId || String(t.userId) === String(userId) || t.userId === '660000000000000000000001' || t.userId === 'all');
+    let list = this.memoryData.trips.filter(t => !userId || String(t.userId) === String(userId) || t.userId === '660000000000000000000001' || t.userId === 'all');
+    if (!list || list.length === 0) {
+      list = this.memoryData.trips;
+    }
+    return list;
   }
 
   async getTripById(tripId) {
@@ -189,19 +199,23 @@ class StorageService {
 
   async getActiveTrip(userId) {
     if (this.isMongoConnected) {
-      const query = userId 
-        ? { $or: [{ userId }, { userId: '660000000000000000000001' }] } 
-        : {};
-      let trip = await Trip.findOne({ ...query, isActive: true });
+      let trip = null;
+      if (userId && userId !== '660000000000000000000001') {
+        trip = await Trip.findOne({ userId, isActive: true });
+        if (!trip) trip = await Trip.findOne({ userId }).sort({ createdAt: -1 });
+      }
       if (!trip) {
-        trip = await Trip.findOne(query).sort({ createdAt: -1 });
+        trip = await Trip.findOne({ isActive: true });
+      }
+      if (!trip) {
+        trip = await Trip.findOne().sort({ createdAt: -1 });
       }
       return trip;
     }
     this.ensureLoaded();
     let trip = this.memoryData.trips.find(t => (!userId || String(t.userId) === String(userId) || t.userId === '660000000000000000000001' || t.userId === 'all') && t.isActive);
     if (!trip && this.memoryData.trips.length > 0) {
-      trip = this.memoryData.trips[0];
+      trip = this.memoryData.trips.find(t => t.isActive) || this.memoryData.trips[0];
     }
     return trip;
   }

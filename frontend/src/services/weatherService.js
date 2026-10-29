@@ -116,11 +116,11 @@ export const fetchDestinationWeather = async (destination) => {
       iconEmoji: '⛅',
       weatherCode: 2,
       forecast: [
-        { dayName: 'Today', maxTemp: 22, minTemp: 15, precipProb: 10, condition: 'Partly Cloudy', iconEmoji: '⛅' },
-        { dayName: 'Tomorrow', maxTemp: 21, minTemp: 14, precipProb: 20, condition: 'Mainly Clear', iconEmoji: '🌤️' },
-        { dayName: 'Wed', maxTemp: 24, minTemp: 16, precipProb: 5, condition: 'Clear Sky', iconEmoji: '☀️' },
-        { dayName: 'Thu', maxTemp: 20, minTemp: 15, precipProb: 40, condition: 'Rain Showers', iconEmoji: '🌧️' },
-        { dayName: 'Fri', maxTemp: 22, minTemp: 14, precipProb: 15, condition: 'Mainly Clear', iconEmoji: '🌤️' }
+        { dayName: 'Today', maxTemp: 22, minTemp: 15, precipProb: 10, condition: 'Partly Cloudy', iconEmoji: '⛅', weathercode: 2 },
+        { dayName: 'Tomorrow', maxTemp: 21, minTemp: 14, precipProb: 20, condition: 'Mainly Clear', iconEmoji: '🌤️', weathercode: 1 },
+        { dayName: 'Wed', maxTemp: 24, minTemp: 16, precipProb: 5, condition: 'Clear Sky', iconEmoji: '☀️', weathercode: 0 },
+        { dayName: 'Thu', maxTemp: 20, minTemp: 15, precipProb: 40, condition: 'Rain Showers', iconEmoji: '🌧️', weathercode: 61 },
+        { dayName: 'Fri', maxTemp: 22, minTemp: 14, precipProb: 15, condition: 'Mainly Clear', iconEmoji: '🌤️', weathercode: 1 }
       ],
       fetchedAt: new Date().toISOString()
     };
