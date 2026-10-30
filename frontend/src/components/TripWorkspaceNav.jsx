@@ -19,7 +19,7 @@ export const TripWorkspaceNav = ({ activeWorkspaceTab, setActiveWorkspaceTab, ac
     { id: 'docs', label: 'Bookings & Docs', icon: FileText },
     { id: 'packing', label: 'Packing', icon: CheckSquare },
     { id: 'members', label: 'Members', icon: Users },
-    { id: 'journal', label: 'Journal', icon: BookOpen }
+    // { id: 'journal', label: 'Journal', icon: BookOpen }
   ];
 
   return (

@@ -1238,3 +1238,140 @@ option {
 .animate-soft-pulse {
   animation: softPulse 3s infinite ease-in-out;
 }
+
+/* ==========================================================================
+   Itinerary Calendar View (Structure & Design Theme)
+   ========================================================================== */
+.cal-cell-selected {
+  background: linear-gradient(135deg, #FF5B45 0%, #E8432E 100%) !important;
+  border-color: #FF5B45 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 24px -4px rgba(255, 91, 69, 0.4), 0 4px 8px -2px rgba(255, 91, 69, 0.2) !important;
+}
+
+.cal-cell-selected * {
+  color: #FFFFFF !important;
+}
+
+.cal-cell-selected .cal-badge {
+  background-color: rgba(255, 255, 255, 0.24) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.cal-cell-selected .cal-subtext {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.cal-cell-selected .cal-act-pill {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+}
+
+.light-theme .cal-cell-has-acts:not(.cal-cell-selected) {
+  background-color: #FFF5F3 !important;
+  border-color: #FFD2C9 !important;
+}
+
+.light-theme .cal-cell-in-trip:not(.cal-cell-selected):not(.cal-cell-has-acts) {
+  background-color: #FFFFFF !important;
+  border-color: #EAECEF !important;
+}
+
+.light-theme .cal-cell-in-trip:not(.cal-cell-selected):hover {
+  border-color: #FF5B45 !important;
+  box-shadow: 0 4px 12px rgba(255, 91, 69, 0.08) !important;
+}
+
+/* Dedicated Activity Action Icon Buttons (Protects against generic light-theme button rules) */
+.cal-action-btn,
+.light-theme .cal-action-btn,
+.light-theme button.cal-action-btn {
+  background: #F8FAFC !important;
+  background-color: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: none !important;
+  color: #64748B !important;
+}
+
+.cal-action-btn:hover,
+.light-theme .cal-action-btn:hover,
+.light-theme button.cal-action-btn:hover {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+}
+
+.dark .cal-action-btn,
+:not(.light-theme) .cal-action-btn,
+:not(.light-theme) button.cal-action-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #94A3B8 !important;
+}
+
+.dark .cal-action-btn:hover,
+:not(.light-theme) .cal-action-btn:hover,
+:not(.light-theme) button.cal-action-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+}
+
+.cal-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.cal-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cal-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+
+.cal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 91, 69, 0.5);
+}
+
+/* Leaflet Custom Map Popup & Marker Styles */
+.leaflet-popup-content-wrapper {
+  border-radius: 18px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  padding: 4px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.dark .leaflet-popup-content-wrapper,
+:not(.light-theme) .leaflet-popup-content-wrapper {
+  background-color: #121927 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+}
+
+.leaflet-popup-tip {
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.dark .leaflet-popup-tip,
+:not(.light-theme) .leaflet-popup-tip {
+  background-color: #121927 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.custom-trip-pin > div {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease !important;
+}
+
+.custom-trip-pin:hover > div {
+  transform: rotate(-45deg) scale(1.18) !important;
+  box-shadow: 0 8px 20px rgba(255, 91, 69, 0.6) !important;
+}
+
+

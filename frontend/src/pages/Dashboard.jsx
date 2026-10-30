@@ -133,12 +133,12 @@ export const Dashboard = ({ setActiveTab, onSelectNeighborhood }) => {
         </div>
       )}
 
-      {/* Tab 8: Post-Trip / Daily Journal */}
-      {activeWorkspaceTab === 'journal' && (
+      {/* Tab 8: Post-Trip / Daily Journal (Commented out) */}
+      {/* {activeWorkspaceTab === 'journal' && (
         <div className="w-full">
           <TripJournalTab />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
